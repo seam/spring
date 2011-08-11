@@ -81,11 +81,11 @@
       
       <!-- Pull in JavaDoc -->
       <dependencySet>
-         <outputDirectory>doc/api</outputDirectory>
+         <outputDirectory>doc/core</outputDirectory>
          <unpack>true</unpack>
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
-            <include>org.jboss.seam.spring:seam-spring-api:jar:javadoc</include>
+            <include>org.jboss.seam.spring:seam-spring-core:jar:javadoc</include>
          </includes>
          <unpackOptions>
             <excludes>
@@ -114,8 +114,7 @@
          <unpack>true</unpack>
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
-            <include>org.jboss.seam.spring:seam-spring-api:*:sources</include>
-            <include>org.jboss.seam.spring:seam-spring-impl:*:sources</include>
+            <include>org.jboss.seam.spring:seam-spring-core:*:sources</include>
          </includes>
          <unpackOptions>
             <excludes>

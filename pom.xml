@@ -37,8 +37,7 @@
    </properties>
 
    <modules>
-      <module>api</module>
-      <module>impl</module>
+      <module>core</module>
    </modules>
 
    <dependencyManagement>
@@ -52,15 +51,10 @@
          </dependency>
 
          <!-- Override submodule versions from org.jboss.seam:seam-bom -->
-         <dependency>
-            <groupId>org.jboss.seam.spring</groupId>
-            <artifactId>seam-spring-api</artifactId>
-            <version>${project.version}</version>
-         </dependency>
 
          <dependency>
             <groupId>org.jboss.seam.spring</groupId>
-            <artifactId>seam-spring</artifactId>
+            <artifactId>seam-spring-core</artifactId>
             <version>${project.version}</version>
          </dependency>
          

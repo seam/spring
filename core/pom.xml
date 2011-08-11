@@ -27,10 +27,10 @@
     </parent>
 
     <groupId>org.jboss.seam.spring</groupId>
-    <artifactId>seam-spring</artifactId>
+    <artifactId>seam-spring-core</artifactId>
     <packaging>jar</packaging>
 
-    <name>Seam Spring Implementation</name>
+    <name>Seam Spring Core</name>
     <!-- url required for JAR Manifest -->
     <url>${project.parent.url}</url>
 
@@ -39,11 +39,6 @@
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.seam.spring</groupId>
-            <artifactId>seam-spring-api</artifactId>
         </dependency>
 
         <dependency>

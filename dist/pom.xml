@@ -38,19 +38,13 @@
 
       <dependency>
          <groupId>org.jboss.seam.spring</groupId>
-         <artifactId>seam-spring-api</artifactId>
+         <artifactId>seam-spring-core</artifactId>
          <optional>true</optional>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.spring</groupId>
-         <artifactId>seam-spring</artifactId>
-         <optional>true</optional>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.seam.spring</groupId>
-         <artifactId>seam-spring-api</artifactId>
+         <artifactId>seam-spring-core</artifactId>
          <version>${project.version}</version>
          <classifier>sources</classifier>
          <optional>true</optional>
@@ -58,7 +52,7 @@
 
       <dependency>
          <groupId>org.jboss.seam.spring</groupId>
-         <artifactId>seam-spring</artifactId>
+         <artifactId>seam-spring-core</artifactId>
          <version>${project.version}</version>
          <classifier>sources</classifier>
          <optional>true</optional>
@@ -66,7 +60,7 @@
 
       <dependency>
          <groupId>org.jboss.seam.spring</groupId>
-         <artifactId>seam-spring-api</artifactId>
+         <artifactId>seam-spring-core</artifactId>
          <version>${project.version}</version>
          <classifier>javadoc</classifier>
       </dependency>
