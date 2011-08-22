@@ -33,6 +33,7 @@
 
    <properties>
       <seam.version>3.0.0.Final</seam.version>
+      <spring.version>3.0.5.RELEASE</spring.version>
       <jboss.spec.version>1.0.0.CR1</jboss.spec.version>
    </properties>
 
@@ -42,12 +43,20 @@
 
    <dependencyManagement>
       <dependencies>
+
          <dependency>
             <groupId>org.jboss.seam</groupId>
             <artifactId>seam-bom</artifactId>
             <version>${seam.version}</version>
             <type>pom</type>
             <scope>import</scope>
+         </dependency>
+
+         <!-- Spring Framework dependencies -->
+         <dependency>
+             <groupId>org.springframework</groupId>
+             <artifactId>spring-context-support</artifactId>
+             <version>${spring.version}</version>
          </dependency>
 
          <!-- Override submodule versions from org.jboss.seam:seam-bom -->
