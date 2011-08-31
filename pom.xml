@@ -21,7 +21,7 @@
    <parent>
       <artifactId>seam-parent</artifactId>
       <groupId>org.jboss.seam</groupId>
-      <version>11</version>
+      <version>15-SNAPSHOT</version>
    </parent>
 
    <groupId>org.jboss.seam.spring</groupId>
@@ -35,6 +35,8 @@
       <seam.version>3.0.0.Final</seam.version>
       <spring.version>3.0.5.RELEASE</spring.version>
       <jboss.spec.version>1.0.0.CR1</jboss.spec.version>
+       <maven.version>3.0.1</maven.version>
+       <aether.version>1.8</aether.version>
    </properties>
 
    <modules>
@@ -59,6 +61,13 @@
              <version>${spring.version}</version>
          </dependency>
 
+          <dependency>
+              <groupId>org.springframework</groupId>
+              <artifactId>spring-web</artifactId>
+              <version>${spring.version}</version>
+          </dependency>
+
+
          <!-- Override submodule versions from org.jboss.seam:seam-bom -->
 
          <dependency>
@@ -73,6 +82,49 @@
             <version>${jboss.spec.version}</version>
             <type>pom</type>
          </dependency>
+
+          <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-settings-builder</artifactId>
+              <version>${maven.version}</version>
+          </dependency>
+          <dependency>
+              <groupId>org.apache.maven</groupId>
+              <artifactId>maven-aether-provider</artifactId>
+              <version>${maven.version}</version>
+          </dependency>
+          <dependency>
+              <groupId>org.sonatype.aether</groupId>
+              <artifactId>aether-util</artifactId>
+              <version>${aether.version}</version>
+              <scope>test</scope>
+          </dependency>
+
+          <dependency>
+              <groupId>org.sonatype.aether</groupId>
+              <artifactId>aether-impl</artifactId>
+              <version>${aether.version}</version>
+              <scope>test</scope>
+          </dependency>
+
+          <dependency>
+              <groupId>org.sonatype.aether</groupId>
+              <artifactId>aether-connector-wagon</artifactId>
+              <version>${aether.version}</version>
+              <scope>test</scope>
+              <exclusions>
+                  <exclusion>
+                      <artifactId>junit</artifactId>
+                      <groupId>junit</groupId>
+                  </exclusion>
+              </exclusions>
+          </dependency>
+
+          <dependency>
+              <groupId>org.sonatype.aether</groupId>
+              <artifactId>aether-api</artifactId>
+              <version>${aether.version}</version>
+          </dependency>
 
       </dependencies>
    </dependencyManagement>
@@ -139,6 +191,7 @@
             </pluginRepository>
          </pluginRepositories>
       </profile>
+
    </profiles>
 
    <scm>

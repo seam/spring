@@ -19,14 +19,13 @@ package org.jboss.seam.spring.bootstrap;
 
 import org.springframework.context.ApplicationContext;
 
-
 import javax.enterprise.inject.Produces;
 
-public class SimpleBean {
+public class WebContextProducer {
 
    @Produces
    @SpringContext
-   @Configuration(locations = "classpath*:org/jboss/seam/spring/bootstrap/applicationContext.xml")
+   @Web
    ApplicationContext context;
 
 }

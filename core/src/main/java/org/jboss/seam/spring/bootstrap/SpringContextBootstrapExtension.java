@@ -17,10 +17,10 @@
 
 package org.jboss.seam.spring.bootstrap;
 
-import org.jboss.arquillian.core.impl.ExtensionImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.ContextLoader;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.event.Observes;
@@ -42,9 +42,13 @@ public class SpringContextBootstrapExtension implements Extension {
 
             @Override
             public ApplicationContext produce(CreationalContext<ApplicationContext> ctx) {
-                Configuration annotation = springContextProducer.getAnnotatedMember().getAnnotation(Configuration.class);
-                if (annotation != null) {
-                   return new ClassPathXmlApplicationContext(annotation.locations());
+                Configuration configuration = springContextProducer.getAnnotatedMember().getAnnotation(Configuration.class);
+                if (configuration != null) {
+                   return new ClassPathXmlApplicationContext(configuration.locations());
+                }
+                Web web = springContextProducer.getAnnotatedMember().getAnnotation(Web.class);
+                if (web != null) {
+                    return ContextLoader.getCurrentWebApplicationContext();
                 }
                 throw new IllegalStateException("Cannot find locations");
             }

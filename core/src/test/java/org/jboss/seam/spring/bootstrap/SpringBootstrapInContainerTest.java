@@ -22,7 +22,10 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +36,8 @@ import org.junit.runner.RunWith;
  */
 
 @RunWith(Arquillian.class)
-public class SpringBootstrapTest {
+
+public class SpringBootstrapInContainerTest {
 
     @Deployment
     public static Archive<?> deployment() {
@@ -41,7 +45,16 @@ public class SpringBootstrapTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("org/jboss/seam/spring/bootstrap/applicationContext.xml")
                 .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
-                .addClasses(ConfigurationContextProducer.class, ContextInjected.class , Configuration.class, SpringContext.class, SpringContextBootstrapExtension.class, Web.class);
+                .addAsLibraries(DependencyResolvers.use(MavenDependencyResolver.class)
+                        .artifact("org.springframework:spring-context-support:3.0.5.RELEASE")
+                        .artifact("org.springframework:spring-beans:3.0.5.RELEASE")
+                        .artifact("org.springframework:spring-context:3.0.5.RELEASE")
+                        .artifact("org.springframework:spring-core:3.0.5.RELEASE")
+                        .artifact("org.springframework:spring-web:3.0.5.RELEASE")
+                        .artifact("commons-logging:commons-logging:1.1.1")
+                        .artifact("org.slf4j:slf4j-simple:1.6.1")
+                        .resolveAs(JavaArchive.class))
+                .addClasses(ConfigurationContextProducer.class, ContextInjected.class);
     }
 
     @Test
