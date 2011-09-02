@@ -18,7 +18,6 @@
 package org.jboss.seam.spring.suites;
 
 import org.jboss.seam.spring.bootstrap.SpringBootstrapInContainerTest;
-import org.jboss.seam.spring.bootstrap.SpringBootstrapTest;
 import org.jboss.seam.spring.bootstrap.SpringWebAccessTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
