@@ -41,7 +41,8 @@ public class SpringBootstrapTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("org/jboss/seam/spring/bootstrap/applicationContext.xml")
                 .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
-                .addClasses(ConfigurationContextProducer.class, ContextInjected.class , Configuration.class, SpringContext.class, SpringContextBootstrapExtension.class, Web.class);
+                .addClasses(ConfigurationContextProducer.class, ContextInjected.class , Configuration.class,
+                        SpringContext.class, SpringContextBootstrapExtension.class, Web.class);
     }
 
     @Test

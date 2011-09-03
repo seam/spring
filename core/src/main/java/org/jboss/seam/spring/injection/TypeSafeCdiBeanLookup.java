@@ -38,7 +38,7 @@ import java.util.Set;
 /**
  * @author: Marius Bogoevici
  */
-public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationContextAware{
+public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationContextAware {
 
     private final Class<T> expectedType;
 
@@ -67,17 +67,17 @@ public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationCo
             for (Qualifier qualifier : qualifiers) {
                 Class<? extends Annotation> qualifierClass = (Class<Annotation>) ClassUtils.getDefaultClassLoader().loadClass(qualifier.getClassName());
                 if (!beanManager.isQualifier(qualifierClass)) {
-                   throw new BeanCreationException(qualifierClass + " is not a valid JSR-299 qualifier");
+                    throw new BeanCreationException(qualifierClass + " is not a valid JSR-299 qualifier");
                 }
                 AnnotationInvocationHandler annotationInvocationHandler = new AnnotationInvocationHandler();
                 annotationInvocationHandler.setConversionService(conversionService);
                 annotationInvocationHandler.setAttributes(qualifier.getAttributes());
-                qualifierAnnotations.add((Annotation)Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{qualifierClass}, annotationInvocationHandler));
+                qualifierAnnotations.add((Annotation) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{qualifierClass}, annotationInvocationHandler));
             }
-            Bean<? extends T> resolvedBean = beanManager.resolve((Set<Bean<? extends T>>) beanManager.getBeans(expectedType, qualifierAnnotations.toArray(new Annotation[]{})));
-            return (T)beanManager.getReference(resolvedBean, expectedType, beanManager.createCreationalContext(resolvedBean));
+            Bean<?> resolvedBean = beanManager.resolve(beanManager.getBeans(expectedType, qualifierAnnotations.toArray(new Annotation[]{})));
+            return (T) beanManager.getReference(resolvedBean, expectedType, beanManager.createCreationalContext(resolvedBean));
         } catch (Exception e) {
-            throw new BeanCreationException("Cannot look up bean: " , e);
+            throw new BeanCreationException("Cannot look up bean: ", e);
         }
     }
 
@@ -91,7 +91,7 @@ public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationCo
 
         private String className;
 
-        private Map<String,Object> attributes;
+        private Map<String, Object> attributes;
 
 
         public String getClassName() {
