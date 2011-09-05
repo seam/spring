@@ -53,7 +53,8 @@ public class SpringWebAccessTest {
                                         .artifact("org.slf4j:slf4j-simple:1.6.1")
                                         .resolveAs(JavaArchive.class))
 
-                .addClasses(WebContextProducer.class, ContextInjected.class, Configuration.class, SpringContext.class, SpringContextBootstrapExtension.class, Web.class);
+                .addClasses(WebContextProducer.class, ContextInjected.class, Configuration.class, SpringContext.class,
+                        SpringContextBootstrapExtension.class, Web.class);
     }
 
     @Test

@@ -15,19 +15,25 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.injection;
 
-import org.springframework.context.ApplicationContext;
-
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
+import org.jboss.seam.solder.core.Veto;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author: Marius Bogoevici
  */
-public class ContextInjected {
+@Veto
+public class SimpleBean {
 
-    @Inject
-    @SpringContext
-    ApplicationContext context;
+    private String message;
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    @Transactional
+    public String getMessage() {
+        return message;
+    }
 }

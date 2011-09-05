@@ -15,19 +15,27 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.injection;
 
+import org.jboss.seam.spring.bootstrap.Configuration;
+import org.jboss.seam.spring.bootstrap.SpringContext;
 import org.springframework.context.ApplicationContext;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 
 /**
  * @author: Marius Bogoevici
  */
-public class ContextInjected {
+public class SimpleBeanProducer {
 
-    @Inject
+    @Produces
+    @ApplicationScoped
     @SpringContext
+    @Configuration(locations = "classpath*:org/jboss/seam/spring/bootstrap/applicationContext.xml")
     ApplicationContext context;
+
+    @Produces @SpringBean(fromContext = "default") SimpleBean simpleBean;
+
+    @Produces @SpringBean ComplicatedBean complicatedBean;
 }

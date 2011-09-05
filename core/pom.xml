@@ -110,6 +110,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
             <!-- required in all cases -->
             <groupId>org.sonatype.aether</groupId>
             <artifactId>aether-api</artifactId>

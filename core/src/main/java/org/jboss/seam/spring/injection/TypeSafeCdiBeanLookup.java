@@ -69,9 +69,9 @@ public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationCo
                 if (!beanManager.isQualifier(qualifierClass)) {
                     throw new BeanCreationException(qualifierClass + " is not a valid JSR-299 qualifier");
                 }
-                AnnotationInvocationHandler annotationInvocationHandler = new AnnotationInvocationHandler();
-                annotationInvocationHandler.setConversionService(conversionService);
-                annotationInvocationHandler.setAttributes(qualifier.getAttributes());
+                AnnotationInvocationHandler annotationInvocationHandler = new AnnotationInvocationHandler()
+                        .withConversionService(conversionService)
+                        .withAttributes(qualifier.getAttributes());
                 qualifierAnnotations.add((Annotation) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{qualifierClass}, annotationInvocationHandler));
             }
             Bean<?> resolvedBean = beanManager.resolve(beanManager.getBeans(expectedType, qualifierAnnotations.toArray(new Annotation[]{})));

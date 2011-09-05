@@ -17,17 +17,20 @@
 
 package org.jboss.seam.spring.bootstrap;
 
-import org.springframework.context.ApplicationContext;
-
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
+import javax.enterprise.util.AnnotationLiteral;
 
 /**
  * @author: Marius Bogoevici
  */
-public class ContextInjected {
+public class SpringContextLiteral extends AnnotationLiteral<SpringContext> implements SpringContext {
+    private String name;
 
-    @Inject
-    @SpringContext
-    ApplicationContext context;
+    public SpringContextLiteral(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String name() {
+        return this.name;
+    }
 }

@@ -15,19 +15,15 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.injection;
 
-import org.springframework.context.ApplicationContext;
-
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * @author: Marius Bogoevici
  */
-public class ContextInjected {
-
-    @Inject
-    @SpringContext
-    ApplicationContext context;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface SpringBean {
+    String fromContext() default "default";
 }

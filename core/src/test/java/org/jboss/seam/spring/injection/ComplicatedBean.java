@@ -15,19 +15,18 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.injection;
 
-import org.springframework.context.ApplicationContext;
+import org.jboss.seam.solder.core.Veto;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
 /**
  * @author: Marius Bogoevici
  */
-public class ContextInjected {
+@Veto
+public class ComplicatedBean {
 
-    @Inject
-    @SpringContext
-    ApplicationContext context;
+    @Inject SimpleBean simpleBean;
 }

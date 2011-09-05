@@ -33,20 +33,27 @@ public class AnnotationInvocationHandler implements InvocationHandler {
 
     private Map<String, Object> registeredValues = new HashMap<String, Object>();
 
-    private ConversionService conversionService;
+    private ConversionService conversionService = null;
 
-    public void setConversionService(ConversionService conversionService) {
+    public AnnotationInvocationHandler withConversionService(ConversionService conversionService) {
         this.conversionService = conversionService;
+        return this;
     }
 
-    public void setAttributes(Map<String, Object> registeredValues) {
+    public AnnotationInvocationHandler withAttributes(Map<String, Object> registeredValues) {
         this.registeredValues = registeredValues;
+        return this;
     }
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (registeredValues.containsKey(method.getName())) {
-            return conversionService.convert(registeredValues.get(method.getName()), method.getReturnType());
+            if (conversionService != null) {
+                return conversionService.convert(registeredValues.get(method.getName()), method.getReturnType());
+            }
+            else {
+                return registeredValues.get(method.getName());
+            }
         } else {
             return method.getDefaultValue();
         }
