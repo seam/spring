@@ -26,9 +26,7 @@ import org.springframework.web.context.ContextLoader;
 
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.spi.*;
-import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -54,8 +52,10 @@ public class SpringContextBootstrapExtension implements Extension {
         processProducer.setProducer(new Producer<Object>() {
             @Override
             public Object produce(CreationalContext<Object> ctx) {
-                String value = processProducer.getAnnotatedMember().getAnnotation(SpringBean.class).fromContext();
-                Bean<? extends Object> resolve = beanManager.resolve(beanManager.getBeans(ApplicationContext.class, new SpringContextLiteral(value) ));
+                String contextName = processProducer.getAnnotatedMember().getAnnotation(SpringBean.class).fromContext();
+                Map<String, Object> attributeValues = new HashMap<String, Object>();
+                attributeValues.put("name", contextName);
+                Bean<?> resolve = beanManager.resolve(beanManager.getBeans(ApplicationContext.class, new SpringContextLiteral(contextName)));
                 ApplicationContext applicationContextInstance = (ApplicationContext) beanManager.getReference(resolve, ApplicationContext.class, beanManager.createCreationalContext(resolve));
                 Field producerField = (Field) processProducer.getAnnotatedMember().getJavaMember();
                 return  applicationContextInstance.getBean(producerField.getType());

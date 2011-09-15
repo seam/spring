@@ -38,15 +38,19 @@ public class Annotations {
      * @param <T> the annotation type
      * @return an annotation instance
      */
-     public static <T extends Annotation> T of(Class<T> clazz, Map<String, Object> attributes) {
-         AnnotationInvocationHandler annotationInvocationHandler = new AnnotationInvocationHandler()
+     public static <T extends Annotation> T instanceOf(Class<T> clazz, Map<String, Object> attributes) {
+         AnnotationInvocationHandler annotationInvocationHandler = new AnnotationInvocationHandler(clazz)
                  .withAttributes(attributes);
          return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[]{clazz}, annotationInvocationHandler);
      }
 
-     public static <T extends Annotation> T of(Class<T> clazz) {
-         AnnotationInvocationHandler annotationInvocationHandler = new AnnotationInvocationHandler()
-                 .withAttributes(Collections.<String, Object>emptyMap());
-         return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class<?>[]{clazz}, annotationInvocationHandler);
+      /**
+     * Create an {@link Annotation} instance from its given class
+     * @param clazz - the annotation class
+     * @param <T> the annotation type
+     * @return an annotation instance
+     */
+     public static <T extends Annotation> T instanceOf(Class<T> clazz) {
+         return instanceOf(clazz, Collections.<String, Object>emptyMap());
      }
 }
