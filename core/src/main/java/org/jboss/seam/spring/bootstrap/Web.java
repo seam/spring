@@ -20,6 +20,10 @@ package org.jboss.seam.spring.bootstrap;
 import java.lang.annotation.*;
 
 /**
+ * When a producer field has this annotation, the extension will automatically look up the
+ * root web application context which will be injected into all the injection points serviced
+ * by this producer.
+ *
  * @author: Marius Bogoevici
  */
 @Documented
