@@ -23,6 +23,7 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
@@ -42,7 +43,7 @@ public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationCo
 
     private final Class<T> expectedType;
 
-    private Qualifier[] qualifiers;
+    private Qualifier[] qualifiers = new Qualifier[]{};
 
     private ConversionService conversionService;
 
@@ -57,7 +58,15 @@ public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationCo
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.conversionService = applicationContext.getBean(ConversionService.class);
+        try {
+            Object conversionServiceBeanInstance = applicationContext.getBean("conversionService");
+            if (conversionServiceBeanInstance instanceof ConversionService) {
+                this.conversionService = (ConversionService) conversionServiceBeanInstance;
+            }
+        } catch (BeansException e) {
+          // do nothing
+        }
+        this.conversionService = new GenericConversionService();
     }
 
     @Override
@@ -75,6 +84,7 @@ public class TypeSafeCdiBeanLookup<T> implements CdiBeanLookup<T>, ApplicationCo
                 qualifierAnnotations.add((Annotation) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{qualifierClass}, annotationInvocationHandler));
             }
             Bean<?> resolvedBean = beanManager.resolve(beanManager.getBeans(expectedType, qualifierAnnotations.toArray(new Annotation[]{})));
+            Assert.notNull(resolvedBean, "Cannot find a CDI bean");
             return (T) beanManager.getReference(resolvedBean, expectedType, beanManager.createCreationalContext(resolvedBean));
         } catch (Exception e) {
             throw new BeanCreationException("Cannot look up bean: ", e);

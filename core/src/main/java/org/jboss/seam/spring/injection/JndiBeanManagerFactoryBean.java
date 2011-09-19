@@ -26,7 +26,7 @@ import javax.enterprise.inject.spi.BeanManager;
 /**
  * @author: Marius Bogoevici
  */
-public class BeanManagerFactoryBean implements FactoryBean<BeanManager>, InitializingBean {
+public class JndiBeanManagerFactoryBean implements FactoryBean<BeanManager>, InitializingBean {
 
     public static String DEFAULT_BEAN_MANAGER_JNDI_LOCATION =  "java:comp/BeanManager";
 
