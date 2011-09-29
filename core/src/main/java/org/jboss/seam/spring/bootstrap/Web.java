@@ -24,6 +24,8 @@ import java.lang.annotation.*;
  * root web application context which will be injected into all the injection points serviced
  * by this producer.
  *
+ * This annotation has effect only when used on producer fields.
+ *
  * @author: Marius Bogoevici
  */
 @Documented

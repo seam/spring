@@ -24,6 +24,10 @@ import org.springframework.util.Assert;
 import javax.enterprise.inject.spi.BeanManager;
 
 /**
+ * {@link FactoryBean} for referencing CDI beans from within a Spring {@link org.springframework.context.ApplicationContext}.
+ *
+ * Delegates the lookup strategy to a {@link CdiBeanLookup} instance injected into it,
+ *
  * @author: Marius Bogoevici
  */
 public class CdiBeanFactoryBean<T> implements FactoryBean<T>, InitializingBean {
@@ -32,10 +36,9 @@ public class CdiBeanFactoryBean<T> implements FactoryBean<T>, InitializingBean {
 
     private CdiBeanLookup<T> cdiBeanLookup;
 
-    private Class<?> expectedType;
 
     /**
-     * Allows the injection of a bean manager instance
+     * The {@link BeanManager} from which the beans are retrieved.
      *
      * @param beanManager
      */
@@ -49,10 +52,6 @@ public class CdiBeanFactoryBean<T> implements FactoryBean<T>, InitializingBean {
      */
     public void setCdiBeanLookup(CdiBeanLookup<T> cdiBeanLookup) {
         this.cdiBeanLookup = cdiBeanLookup;
-    }
-
-    public void setExpectedType(Class<?> expectedType) {
-        this.expectedType = expectedType;
     }
 
     @Override

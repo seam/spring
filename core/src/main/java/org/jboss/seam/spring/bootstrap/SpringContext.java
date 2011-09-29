@@ -21,6 +21,9 @@ import javax.inject.Qualifier;
 import java.lang.annotation.*;
 
 /**
+ * Qualifier for Spring {@link org.springframework.context.ApplicationContext} instances
+ * managed by the CDI extension.
+ *
  * @author: Marius Bogoevici
  */
 @Qualifier

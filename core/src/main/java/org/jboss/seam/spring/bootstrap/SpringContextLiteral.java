@@ -20,6 +20,8 @@ package org.jboss.seam.spring.bootstrap;
 import javax.enterprise.util.AnnotationLiteral;
 
 /**
+ * An {@link AnnotationLiteral} for the {@link SpringContext} annotation.
+ *
  * @author: Marius Bogoevici
  */
 public class SpringContextLiteral extends AnnotationLiteral<SpringContext> implements SpringContext {
