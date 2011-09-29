@@ -208,7 +208,7 @@
         </profile>
 
          <profile>
-          <id>jbossas7</id>
+          <id>incontainer-jbossas7</id>
           <activation>
              <activeByDefault>false</activeByDefault>
              <property>

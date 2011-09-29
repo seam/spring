@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.support;
 
+import org.jboss.seam.spring.bootstrap.SpringContext;
 import org.springframework.context.ApplicationContext;
 
 import javax.enterprise.inject.Produces;
@@ -30,4 +31,8 @@ public class ContextInjected {
     @Inject
     @SpringContext
     ApplicationContext context;
+
+    public ApplicationContext getContext() {
+        return context;
+    }
 }

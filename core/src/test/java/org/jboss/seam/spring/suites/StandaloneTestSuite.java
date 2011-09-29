@@ -18,6 +18,7 @@
 package org.jboss.seam.spring.suites;
 
 import org.jboss.seam.spring.bootstrap.SpringBootstrapTest;
+import org.jboss.seam.spring.injection.InjectionOfCdiBeanTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -25,6 +26,8 @@ import org.junit.runners.Suite;
  * @author Marius Bogoevici
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses(SpringBootstrapTest.class)
+@Suite.SuiteClasses({
+        SpringBootstrapTest.class,
+        InjectionOfCdiBeanTest.class})
 public class StandaloneTestSuite {
 }

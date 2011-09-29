@@ -26,6 +26,8 @@ import org.junit.runners.Suite;
  * @author Marius Bogoevici
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({SpringBootstrapInContainerTest.class, SpringWebAccessTest.class})
+@Suite.SuiteClasses(
+        { SpringBootstrapInContainerTest.class,
+                SpringWebAccessTest.class})
 public class InContainerTestSuite {
 }

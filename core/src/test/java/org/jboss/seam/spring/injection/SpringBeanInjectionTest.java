@@ -22,6 +22,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.spring.bootstrap.*;
 import org.jboss.seam.spring.reflections.AnnotationInvocationHandler;
 import org.jboss.seam.spring.reflections.Annotations;
+import org.jboss.seam.spring.support.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;

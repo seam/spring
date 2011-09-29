@@ -19,6 +19,8 @@ package org.jboss.seam.spring.bootstrap;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.spring.injection.SpringBean;
+import org.jboss.seam.spring.support.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -54,12 +56,12 @@ public class SpringWebAccessTest {
                                         .resolveAs(JavaArchive.class))
 
                 .addClasses(WebContextProducer.class, ContextInjected.class, Configuration.class, SpringContext.class,
-                        SpringContextBootstrapExtension.class, Web.class);
+                        SpringContextBootstrapExtension.class, Web.class, SpringBean.class);
     }
 
     @Test
     public void testSimpleBean(ContextInjected contextInjected) {
-        Assert.assertNotNull(contextInjected.context);
+        Assert.assertNotNull(contextInjected.getContext());
     }
 
 }

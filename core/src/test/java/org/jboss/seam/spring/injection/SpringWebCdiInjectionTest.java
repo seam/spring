@@ -20,7 +20,7 @@ package org.jboss.seam.spring.injection;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.spring.bootstrap.Configuration;
-import org.jboss.seam.spring.bootstrap.ContextInjected;
+import org.jboss.seam.spring.support.ContextInjected;
 import org.jboss.seam.spring.bootstrap.SpringContext;
 import org.jboss.seam.spring.bootstrap.SpringContextBootstrapExtension;
 import org.jboss.seam.spring.bootstrap.Web;

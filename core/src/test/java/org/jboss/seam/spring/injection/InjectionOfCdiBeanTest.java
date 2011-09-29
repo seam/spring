@@ -15,15 +15,12 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.injection;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.spring.injection.CdiBean;
-import org.jboss.seam.spring.injection.CdiDependency;
-import org.jboss.seam.spring.injection.CdiQualifier;
-import org.jboss.seam.spring.injection.SecondCdiBean;
-import org.jboss.seam.spring.injection.SpringBeanInjectedWithCdiBean;
+import org.jboss.seam.spring.bootstrap.*;
+import org.jboss.seam.spring.support.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -31,6 +28,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
 
 
 /**
@@ -38,7 +36,7 @@ import org.junit.runner.RunWith;
  */
 
 @RunWith(Arquillian.class)
-public class SpringBootstrapTestWithCdiBean {
+public class InjectionOfCdiBeanTest {
 
     @Deployment
     public static Archive<?> deployment() {
@@ -53,7 +51,8 @@ public class SpringBootstrapTestWithCdiBean {
     @Test
     public void testSimpleBean(ContextInjected contextInjected) {
         Assert.assertNotNull(contextInjected);
-        SpringBeanInjectedWithCdiBean springBeanInjectedWithCdiBean = contextInjected.context.getBean(SpringBeanInjectedWithCdiBean.class);
+        final ApplicationContext injectedContext = contextInjected.getContext();
+        SpringBeanInjectedWithCdiBean springBeanInjectedWithCdiBean = injectedContext.getBean(SpringBeanInjectedWithCdiBean.class);
         Assert.assertNotNull(springBeanInjectedWithCdiBean);
         Assert.assertNotNull(springBeanInjectedWithCdiBean.getCdiBean());
         Assert.assertNotNull(springBeanInjectedWithCdiBean.getCdiBean().getCdiDependency());
