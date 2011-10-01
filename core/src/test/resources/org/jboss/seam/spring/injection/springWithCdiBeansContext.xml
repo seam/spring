@@ -27,7 +27,7 @@
         <property name="secondCdiBean">
             <bean class="org.jboss.seam.spring.injection.CdiBeanFactoryBean">
                 <property name="beanManager">
-                    <bean class="org.jboss.seam.spring.support.WeldEmbeddedBeanManagerFactoryBean"/>
+                    <bean class="org.jboss.seam.spring.utils.WeldEmbeddedBeanManagerFactoryBean"/>
                 </property>
                 <property name="cdiBeanLookup">
                     <bean class="org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup">
@@ -47,7 +47,7 @@
 
     <bean id="cdiBean" class="org.jboss.seam.spring.injection.CdiBeanFactoryBean">
         <property name="beanManager">
-            <bean class="org.jboss.seam.spring.support.WeldEmbeddedBeanManagerFactoryBean"/>
+            <bean class="org.jboss.seam.spring.utils.WeldEmbeddedBeanManagerFactoryBean"/>
         </property>
         <property name="cdiBeanLookup">
             <bean class="org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup">

@@ -19,7 +19,8 @@ package org.jboss.seam.spring.bootstrap;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.spring.support.ContextInjected;
+import org.jboss.seam.spring.bootstrap.*;
+import org.jboss.seam.spring.utils.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;

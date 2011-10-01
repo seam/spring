@@ -112,7 +112,16 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>3.0.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
         </dependency>
 
         <dependency>
@@ -155,6 +164,11 @@
          <dependency>
             <groupId>org.jboss.weld</groupId>
             <artifactId>weld-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
         </dependency>
 
     </dependencies>
@@ -208,7 +222,7 @@
         </profile>
 
          <profile>
-          <id>incontainer-jbossas7</id>
+          <id>jboss-as7</id>
           <activation>
              <activeByDefault>false</activeByDefault>
              <property>
@@ -231,6 +245,12 @@
                    <configuration>
                       <test>org.jboss.seam.spring.suites.InContainerTestSuite</test>
                       <parallel>none</parallel>
+                       <systemPropertyVariables>
+                               <spring.version>${spring.version}</spring.version>
+                               <commons.logging.version>${commons.logging.version}</commons.logging.version>
+                               <solder.version>${seam.solder.version}</solder.version>
+                               <slf4j.version>${slf4j.version}</slf4j.version>
+                       </systemPropertyVariables>
                    </configuration>
                 </plugin>
              </plugins>

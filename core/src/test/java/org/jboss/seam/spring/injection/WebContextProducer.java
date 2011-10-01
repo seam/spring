@@ -15,21 +15,19 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.suites;
+package org.jboss.seam.spring.injection;
 
-import org.jboss.seam.spring.bootstrap.SpringBootstrapInContainerTest;
-import org.jboss.seam.spring.bootstrap.SpringWebAccessTest;
-import org.jboss.seam.spring.injection.InjectionOfCdiBeanInWeb;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.bootstrap.Web;
+import org.springframework.context.ApplicationContext;
 
-/**
- * @author Marius Bogoevici
- */
-@RunWith(Suite.class)
-@Suite.SuiteClasses(
-        { SpringBootstrapInContainerTest.class,
-                SpringWebAccessTest.class,
-                InjectionOfCdiBeanInWeb.class})
-public class InContainerTestSuite {
+import javax.enterprise.inject.Produces;
+
+public class WebContextProducer {
+
+   @Produces
+   @SpringContext
+   @Web
+   ApplicationContext context;
+
 }

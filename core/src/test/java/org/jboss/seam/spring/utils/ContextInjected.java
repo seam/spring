@@ -15,19 +15,23 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.utils;
 
+import org.jboss.seam.spring.bootstrap.SpringContext;
 import org.springframework.context.ApplicationContext;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 
-public class SpringConfigurationContextProducer {
+/**
+ * @author: Marius Bogoevici
+ */
+public class ContextInjected {
 
-   @Produces
-   @ApplicationScoped
-   @SpringContext
-   @Configuration(locations = "classpath*:org/jboss/seam/spring/bootstrap/springWithCdiBeansContext.xml")
-   ApplicationContext context;
+    @Inject
+    @SpringContext
+    ApplicationContext context;
 
+    public ApplicationContext getContext() {
+        return context;
+    }
 }

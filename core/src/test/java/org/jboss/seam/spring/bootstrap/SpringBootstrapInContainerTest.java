@@ -19,17 +19,17 @@ package org.jboss.seam.spring.bootstrap;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.spring.support.ContextInjected;
+import org.jboss.seam.spring.bootstrap.ConfigurationContextProducer;
+import org.jboss.seam.spring.utils.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.jboss.seam.spring.utils.Dependencies.springWebApplicationDependencies;
 
 
 /**
@@ -46,15 +46,7 @@ public class SpringBootstrapInContainerTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("org/jboss/seam/spring/bootstrap/applicationContext.xml")
                 .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
-                .addAsLibraries(DependencyResolvers.use(MavenDependencyResolver.class)
-                        .artifact("org.springframework:spring-context-support:3.0.5.RELEASE")
-                        .artifact("org.springframework:spring-beans:3.0.5.RELEASE")
-                        .artifact("org.springframework:spring-context:3.0.5.RELEASE")
-                        .artifact("org.springframework:spring-core:3.0.5.RELEASE")
-                        .artifact("org.springframework:spring-web:3.0.5.RELEASE")
-                        .artifact("commons-logging:commons-logging:1.1.1")
-                        .artifact("org.slf4j:slf4j-simple:1.6.1")
-                        .resolveAs(JavaArchive.class))
+                .addAsLibraries(springWebApplicationDependencies())
                 .addClasses(ConfigurationContextProducer.class, ContextInjected.class);
     }
 
