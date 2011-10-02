@@ -41,7 +41,7 @@ import static org.jboss.seam.spring.utils.Dependencies.springWebApplicationDepen
  */
 
 @RunWith(Arquillian.class)
-public class InjectionOfCdiBeanInWebTest {
+public class InjectionOfCdiBeanWebContextTest {
    @Deployment
     public static Archive<?> deployment() {
         return ShrinkWrap.create(WebArchive.class, "spring-web-cdi-injection-test.war")
