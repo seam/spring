@@ -19,7 +19,7 @@ package org.jboss.seam.spring.suites;
 
 import org.jboss.seam.spring.bootstrap.SpringBootstrapInContainerTest;
 import org.jboss.seam.spring.bootstrap.SpringWebAccessTest;
-import org.jboss.seam.spring.injection.InjectionOfCdiBeanInWeb;
+import org.jboss.seam.spring.injection.InjectionOfCdiBeanInWebTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -30,6 +30,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
         { SpringBootstrapInContainerTest.class,
                 SpringWebAccessTest.class,
-                InjectionOfCdiBeanInWeb.class})
+                InjectionOfCdiBeanInWebTest.class})
 public class InContainerTestSuite {
 }

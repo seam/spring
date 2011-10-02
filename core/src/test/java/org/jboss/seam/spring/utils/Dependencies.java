@@ -37,6 +37,7 @@ public class Dependencies {
 
     public static Collection<JavaArchive> springWebApplicationDependencies() {
         return DependencyResolvers.use(MavenDependencyResolver.class)
+                .artifact("org.springframework:spring-asm:" + SPRING_VERSION)
                 .artifact("org.springframework:spring-context-support:" + SPRING_VERSION)
                 .artifact("org.springframework:spring-beans:" + SPRING_VERSION)
                 .artifact("org.springframework:spring-context:" + SPRING_VERSION)

@@ -23,6 +23,8 @@ import org.jboss.seam.spring.bootstrap.Configuration;
 import org.jboss.seam.spring.bootstrap.SpringContext;
 import org.jboss.seam.spring.bootstrap.SpringContextBootstrapExtension;
 import org.jboss.seam.spring.bootstrap.Web;
+import org.jboss.seam.spring.reflections.AnnotationInvocationHandler;
+import org.jboss.seam.spring.utils.WeldEmbeddedBeanManagerFactoryBean;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -39,18 +41,20 @@ import static org.jboss.seam.spring.utils.Dependencies.springWebApplicationDepen
  */
 
 @RunWith(Arquillian.class)
-public class InjectionOfCdiBeanInWeb {
+public class InjectionOfCdiBeanInWebTest {
    @Deployment
     public static Archive<?> deployment() {
         return ShrinkWrap.create(WebArchive.class, "spring-web-cdi-injection-test.war")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .setWebXML("org/jboss/seam/spring/common/web.xml")
-                .addAsWebInfResource("org/jboss/seam/spring/injection/springWithCdiBeansContext.xml", "applicationContext.xml")
+                .addAsWebInfResource("org/jboss/seam/spring/injection/springWithCdiBeansContextWeb.xml", "applicationContext.xml")
                 .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
                 .addAsLibraries(springWebApplicationDependencies())
                 .addClasses(WebContextProducer.class, Configuration.class, SpringContext.class,
                         SpringContextBootstrapExtension.class, Web.class, SpringBean.class,
-                        SpringBeanInjectedWithCdiBean.class, CdiBeanFactoryBean.class,
+                        SpringBeanInjectedWithCdiBean.class, CdiBeanFactoryBean.class, CdiBeanLookup.class,
+                        TypeSafeCdiBeanLookup.class, NamedCdiBeanLookup.class, WeldEmbeddedBeanManagerFactoryBean.class,
+                        AnnotationInvocationHandler.class,
                         CdiBean.class, CdiDependency.class, SecondCdiBean.class, CdiQualifier.class);
     }
 
