@@ -15,21 +15,19 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.test.bootstrap;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.bootstrap.Web;
+import org.springframework.context.ApplicationContext;
 
-/**
- * Annotation that can be added to a producer field to indicate that the bean produced by that field
- * is in fact a bean instance acquired from a corresponding Spring {@link org.springframework.context.ApplicationContext}.
- *
- *
- * This is not a qualifier.
- *
- * @author: Marius Bogoevici
- */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface SpringBean {
-    String fromContext() default "default";
+import javax.enterprise.inject.Produces;
+
+public class WebContextProducer {
+
+   @Produces
+   @SpringContext
+   @Web
+   ApplicationContext context;
+
 }

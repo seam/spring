@@ -15,21 +15,19 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.test.suites;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import org.jboss.seam.spring.test.bootstrap.SpringBootstrapStandaloneTest;
+import org.jboss.seam.spring.test.injection.InjectionOfCdiBeanTest;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
 /**
- * Annotation that can be added to a producer field to indicate that the bean produced by that field
- * is in fact a bean instance acquired from a corresponding Spring {@link org.springframework.context.ApplicationContext}.
- *
- *
- * This is not a qualifier.
- *
- * @author: Marius Bogoevici
+ * @author Marius Bogoevici
  */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface SpringBean {
-    String fromContext() default "default";
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        SpringBootstrapStandaloneTest.class,
+        InjectionOfCdiBeanTest.class})
+public class StandaloneTestSuite {
 }

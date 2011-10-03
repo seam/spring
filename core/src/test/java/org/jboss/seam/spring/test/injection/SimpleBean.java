@@ -15,21 +15,24 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.test.injection;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import org.jboss.seam.solder.core.Veto;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Annotation that can be added to a producer field to indicate that the bean produced by that field
- * is in fact a bean instance acquired from a corresponding Spring {@link org.springframework.context.ApplicationContext}.
- *
- *
- * This is not a qualifier.
- *
  * @author: Marius Bogoevici
  */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface SpringBean {
-    String fromContext() default "default";
+@Veto
+public class SimpleBean {
+
+    private String message;
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

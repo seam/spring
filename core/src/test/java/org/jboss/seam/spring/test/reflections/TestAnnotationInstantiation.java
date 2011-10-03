@@ -15,21 +15,24 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.test.reflections;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.reflections.Annotations;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Annotation that can be added to a producer field to indicate that the bean produced by that field
- * is in fact a bean instance acquired from a corresponding Spring {@link org.springframework.context.ApplicationContext}.
- *
- *
- * This is not a qualifier.
- *
  * @author: Marius Bogoevici
  */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface SpringBean {
-    String fromContext() default "default";
+public class TestAnnotationInstantiation {
+
+    @Test
+    public void testAnnotationType() {
+        SpringContext springContext = Annotations.instanceOf(SpringContext.class);
+        Assert.assertNotNull(springContext);
+        Assert.assertNotNull(springContext.annotationType());
+        Assert.assertNotNull(springContext.name());
+        Assert.assertEquals("default", springContext.name());
+    }
 }

@@ -1,1 +1,0 @@
-default=classpath*:/org/jboss/seam/spring/bootstrap/applicationContext.xml

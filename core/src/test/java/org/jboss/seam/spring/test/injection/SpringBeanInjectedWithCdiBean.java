@@ -15,21 +15,30 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+package org.jboss.seam.spring.test.injection;
 
 /**
- * Annotation that can be added to a producer field to indicate that the bean produced by that field
- * is in fact a bean instance acquired from a corresponding Spring {@link org.springframework.context.ApplicationContext}.
- *
- *
- * This is not a qualifier.
- *
  * @author: Marius Bogoevici
  */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface SpringBean {
-    String fromContext() default "default";
+public class SpringBeanInjectedWithCdiBean {
+
+    CdiBean cdiBean;
+
+    SecondCdiBean secondCdiBean;
+
+    public CdiBean getCdiBean() {
+        return cdiBean;
+    }
+
+    public void setCdiBean(CdiBean cdiBean) {
+        this.cdiBean = cdiBean;
+    }
+
+    public SecondCdiBean getSecondCdiBean() {
+        return secondCdiBean;
+    }
+
+    public void setSecondCdiBean(SecondCdiBean secondCdiBean) {
+        this.secondCdiBean = secondCdiBean;
+    }
 }
