@@ -15,22 +15,21 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.test.injection;
 
-import javax.inject.Qualifier;
-import java.lang.annotation.*;
+import org.jboss.seam.spring.bootstrap.Configuration;
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.springframework.context.ApplicationContext;
 
-/**
- * Qualifier for Spring {@link org.springframework.context.ApplicationContext} instances
- * managed by the CDI extension.
- *
- * @author: Marius Bogoevici
- */
-@Qualifier
-@Inherited
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
-public @interface SpringContext {
-    String name() default "default";
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
+
+public class SpringConfigurationContextProducer {
+
+   @Produces
+   @ApplicationScoped
+   @SpringContext
+   @Configuration(locations = "classpath*:org/jboss/seam/spring/test/injection/springWithCdiBeansContext.xml")
+   ApplicationContext context;
+
 }

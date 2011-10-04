@@ -15,27 +15,24 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.test.injection;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.jboss.seam.solder.core.Veto;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Describes a set of configuration locations that can be used to bootstrap a Spring
- * {@link org.springframework.context.ApplicationContext}.
- *
- * When a producer field has this annotation, the extension will automatically bootstrap
- * an application context which will be injected into all the injection points serviced
- * by this producer.
- *
  * @author: Marius Bogoevici
  */
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface Configuration {
-    String[] locations() default "context";
+@Veto
+public class SimpleBean {
+
+    private String message;
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

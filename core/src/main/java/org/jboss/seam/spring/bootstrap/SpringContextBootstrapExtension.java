@@ -17,53 +17,69 @@
 
 package org.jboss.seam.spring.bootstrap;
 
-import org.springframework.context.ApplicationContext;
+import org.jboss.seam.spring.injection.SpringBean;
+import org.jboss.seam.spring.utils.Locations;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.ContextLoader;
 
-import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.event.Observes;
-import javax.enterprise.inject.spi.Extension;
-import javax.enterprise.inject.spi.InjectionPoint;
-import javax.enterprise.inject.spi.ProcessProducer;
-import javax.enterprise.inject.spi.Producer;
-import java.util.Set;
+import javax.enterprise.inject.spi.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+
+import static org.jboss.seam.spring.utils.Locations.SEAM_SPRING_CONTEXTS_LOCATION;
 
 /**
  * @author: Marius Bogoevici
  */
 public class SpringContextBootstrapExtension implements Extension {
 
-    public void bootstrapContext(final @Observes ProcessProducer<?,ApplicationContext> springContextProducer) {
+   
+    public Map<String, ConfigurableApplicationContext> contextDefinitions = new HashMap<String, ConfigurableApplicationContext>();
+    
+    private Set<String> vetoedTypes = new HashSet<String>();
 
-        final Producer<ApplicationContext> originalProducer = springContextProducer.getProducer();
-        springContextProducer.setProducer(new Producer<ApplicationContext>() {
-
-            @Override
-            public ApplicationContext produce(CreationalContext<ApplicationContext> ctx) {
-                Configuration configuration = springContextProducer.getAnnotatedMember().getAnnotation(Configuration.class);
-                if (configuration != null) {
-                   return new ClassPathXmlApplicationContext(configuration.locations());
-                }
-                Web web = springContextProducer.getAnnotatedMember().getAnnotation(Web.class);
-                if (web != null) {
-                    return ContextLoader.getCurrentWebApplicationContext();
-                }
-                throw new IllegalStateException("Cannot find locations");
-            }
-
-            @Override
-            public void dispose(ApplicationContext instance) {
-                if (instance instanceof ConfigurableApplicationContext) {
-                    ((ConfigurableApplicationContext)instance).close();
-                }
-            }
-
-            @Override
-            public Set<InjectionPoint> getInjectionPoints() {
-                return originalProducer.getInjectionPoints();
-            }
-        });
+    public void handleSpringExtensionProducers(final @Observes ProcessProducer<?, Object> processProducer, final BeanManager beanManager) {
+        if (processProducer.getAnnotatedMember().isAnnotationPresent(SpringBean.class)) {
+            processProducer.setProducer(new SpringBeanProducer(processProducer, beanManager));
+        } else if (processProducer.getAnnotatedMember().isAnnotationPresent(SpringContext.class)) {
+            processProducer.setProducer(new SpringContextProducer(processProducer, processProducer.getProducer()));
+        }
     }
+
+
+    public void loadSpringContext(@Observes BeforeBeanDiscovery beforeBeanDiscovery, BeanManager beanManager) {
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(Locations.SEAM_SPRING_CONTEXTS_LOCATION);
+        if (inputStream != null) {
+            Properties contextLocations = new Properties();
+            try {
+                contextLocations.load(inputStream);
+                for (String contextName : contextLocations.stringPropertyNames()) {
+                    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(contextLocations.getProperty(contextName));
+                    contextDefinitions.put(contextName, context);
+                    for (String beanDefinitionName : context.getBeanDefinitionNames()) {
+                        vetoedTypes.add(context.getBeanFactory().getBeanDefinition(beanDefinitionName).getBeanClassName());
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    
+    public void registerSpringContextBeans(@Observes AfterBeanDiscovery afterBeanDiscovery) {
+        for (String contextName : contextDefinitions.keySet()) {
+            afterBeanDiscovery.addBean(new SpringContextBean(contextDefinitions.get(contextName), new SpringContextLiteral(contextName)));
+        }
+    }
+
+    public void autoVeto(@Observes ProcessAnnotatedType<?> processAnnotatedType) {
+        String name = processAnnotatedType.getAnnotatedType().getJavaClass().getName();
+        if (vetoedTypes.contains(name)) {
+            processAnnotatedType.veto();
+        }
+    }
+
 }

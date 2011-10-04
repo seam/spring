@@ -15,50 +15,49 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.test.bootstrap;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.spring.test.injection.ComplicatedBean;
+import org.jboss.seam.spring.test.injection.SimpleBean;
+import org.jboss.seam.spring.test.utils.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
+import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
+
 
 /**
  * @author: Marius Bogoevici
  */
 
 @RunWith(Arquillian.class)
-public class SpringWebAccessTest {
-   @Deployment
+
+public class SpringBootstrapInContainerTest {
+
+    @Deployment
     public static Archive<?> deployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .setWebXML("org/jboss/seam/spring/bootstrap/webinf/web.xml")
-                .addAsWebInfResource("org/jboss/seam/spring/bootstrap/webinf/applicationContext.xml", "applicationContext.xml")
+                .addAsResource("org/jboss/seam/spring/test/bootstrap/applicationContext.xml")
                 .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
-                .addAsLibraries(DependencyResolvers.use(MavenDependencyResolver.class)
-                                        .artifact("org.springframework:spring-context-support:3.0.5.RELEASE")
-                                        .artifact("org.springframework:spring-beans:3.0.5.RELEASE")
-                                        .artifact("org.springframework:spring-context:3.0.5.RELEASE")
-                                        .artifact("org.springframework:spring-core:3.0.5.RELEASE")
-                                        .artifact("org.springframework:spring-web:3.0.5.RELEASE")
-                                        .artifact("commons-logging:commons-logging:1.1.1")
-                                        .artifact("org.slf4j:slf4j-simple:1.6.1")
-                                        .resolveAs(JavaArchive.class))
-
-                .addClasses(WebContextProducer.class, ContextInjected.class, Configuration.class, SpringContext.class, SpringContextBootstrapExtension.class, Web.class);
+                .addAsLibraries(springDependencies())
+                .addPackages(true, corePackages())
+                .addClasses(ContextInjected.class, ConfigurationContextProducer.class,
+                        SimpleBean.class, ComplicatedBean.class);
     }
 
     @Test
     public void testSimpleBean(ContextInjected contextInjected) {
-        Assert.assertNotNull(contextInjected.context);
+        Assert.assertNotNull(contextInjected);
     }
+
 
 }

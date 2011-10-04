@@ -15,17 +15,23 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.test.utils;
 
+import org.jboss.seam.spring.bootstrap.SpringContext;
 import org.springframework.context.ApplicationContext;
 
-import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 
-public class WebContextProducer {
+/**
+ * @author: Marius Bogoevici
+ */
+public class ContextInjected {
 
-   @Produces
-   @SpringContext
-   @Web
-   ApplicationContext context;
+    @Inject
+    @SpringContext
+    ApplicationContext context;
 
+    public ApplicationContext getContext() {
+        return context;
+    }
 }

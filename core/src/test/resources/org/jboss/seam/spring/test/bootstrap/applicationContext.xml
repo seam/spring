@@ -21,6 +21,10 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="org.jboss.seam.spring.bootstrap"/>
+    <bean id="simpleBean" class="org.jboss.seam.spring.test.injection.SimpleBean">
+        <property name="message" value="Hello"/>
+    </bean>
+
+    <bean id="complexBean" class="org.jboss.seam.spring.test.injection.ComplicatedBean"/>
 
 </beans>

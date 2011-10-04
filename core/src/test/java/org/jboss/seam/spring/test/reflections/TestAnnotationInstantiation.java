@@ -15,27 +15,24 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.test.reflections;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.reflections.Annotations;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Describes a set of configuration locations that can be used to bootstrap a Spring
- * {@link org.springframework.context.ApplicationContext}.
- *
- * When a producer field has this annotation, the extension will automatically bootstrap
- * an application context which will be injected into all the injection points serviced
- * by this producer.
- *
  * @author: Marius Bogoevici
  */
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface Configuration {
-    String[] locations() default "context";
+public class TestAnnotationInstantiation {
+
+    @Test
+    public void testAnnotationType() {
+        SpringContext springContext = Annotations.instanceOf(SpringContext.class);
+        Assert.assertNotNull(springContext);
+        Assert.assertNotNull(springContext.annotationType());
+        Assert.assertNotNull(springContext.name());
+        Assert.assertEquals("default", springContext.name());
+    }
 }

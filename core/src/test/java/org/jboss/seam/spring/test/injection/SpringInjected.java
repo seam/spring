@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
-
-import org.springframework.context.ApplicationContext;
+package org.jboss.seam.spring.test.injection;
 
 import javax.inject.Inject;
 
 /**
  * @author: Marius Bogoevici
  */
-public class ContextInjected {
+public class SpringInjected {
 
     @Inject
-    @SpringContext
-    ApplicationContext context;
+    SimpleBean simpleBean;
+
+    @Inject
+    ComplicatedBean complicatedBean;
 }

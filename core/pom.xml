@@ -110,6 +110,21 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+
+        <dependency>
             <!-- required in all cases -->
             <groupId>org.sonatype.aether</groupId>
             <artifactId>aether-api</artifactId>
@@ -138,6 +153,22 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-settings-builder</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-api</artifactId>
+        </dependency>
+
+         <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
         </dependency>
 
     </dependencies>
@@ -181,7 +212,7 @@
                    <groupId>org.apache.maven.plugins</groupId>
                    <artifactId>maven-surefire-plugin</artifactId>
                    <configuration>
-                      <test>org.jboss.seam.spring.suites.StandaloneTestSuite</test>
+                      <test>org.jboss.seam.spring.test.suites.StandaloneTestSuite</test>
                       <parallel>none</parallel>
                    </configuration>
                 </plugin>
@@ -191,7 +222,8 @@
         </profile>
 
          <profile>
-          <id>jbossas7</id>
+          <id>incontainer</id>
+          <!-- In-container tests using JBoss AS7 -->
           <activation>
              <activeByDefault>false</activeByDefault>
              <property>
@@ -212,8 +244,14 @@
                    <groupId>org.apache.maven.plugins</groupId>
                    <artifactId>maven-surefire-plugin</artifactId>
                    <configuration>
-                      <test>org.jboss.seam.spring.suites.InContainerTestSuite</test>
+                      <test>org.jboss.seam.spring.test.suites.InContainerTestSuite</test>
                       <parallel>none</parallel>
+                       <systemPropertyVariables>
+                               <spring.version>${spring.version}</spring.version>
+                               <commons.logging.version>${commons.logging.version}</commons.logging.version>
+                               <solder.version>${seam.solder.version}</solder.version>
+                               <slf4j.version>${slf4j.version}</slf4j.version>
+                       </systemPropertyVariables>
                    </configuration>
                 </plugin>
              </plugins>

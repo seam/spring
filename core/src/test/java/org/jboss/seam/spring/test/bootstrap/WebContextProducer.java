@@ -15,18 +15,19 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.test.bootstrap;
 
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.bootstrap.Web;
 import org.springframework.context.ApplicationContext;
-
 
 import javax.enterprise.inject.Produces;
 
-public class ConfigurationContextProducer {
+public class WebContextProducer {
 
    @Produces
    @SpringContext
-   @Configuration(locations = "classpath*:org/jboss/seam/spring/bootstrap/applicationContext.xml")
+   @Web
    ApplicationContext context;
 
 }

@@ -15,18 +15,24 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.suites;
+package org.jboss.seam.spring.test.injection;
 
-import org.jboss.seam.spring.bootstrap.SpringBootstrapInContainerTest;
-import org.jboss.seam.spring.bootstrap.SpringBootstrapTest;
-import org.jboss.seam.spring.bootstrap.SpringWebAccessTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import javax.inject.Inject;
 
 /**
- * @author Marius Bogoevici
+ * @author: Marius Bogoevici
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses({SpringBootstrapInContainerTest.class, SpringWebAccessTest.class})
-public class InContainerTestSuite {
+public class CdiBean {
+
+    @Inject
+    private CdiDependency cdiDependency;
+
+
+    public CdiDependency getCdiDependency() {
+        return cdiDependency;
+    }
+
+    public void setCdiDependency(CdiDependency cdiDependency) {
+        this.cdiDependency = cdiDependency;
+    }
 }

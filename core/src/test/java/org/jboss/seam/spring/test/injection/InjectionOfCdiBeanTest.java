@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.test.injection;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.spring.test.utils.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -26,6 +27,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+
+import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
 
 
 /**
@@ -33,21 +37,29 @@ import org.junit.runner.RunWith;
  */
 
 @RunWith(Arquillian.class)
-public class SpringBootstrapTest {
+public class InjectionOfCdiBeanTest {
 
     @Deployment
     public static Archive<?> deployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsResource("org/jboss/seam/spring/bootstrap/applicationContext.xml")
                 .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
-                .addClasses(ConfigurationContextProducer.class, ContextInjected.class , Configuration.class, SpringContext.class, SpringContextBootstrapExtension.class, Web.class);
+                .addPackages(true, corePackages())
+                .addClasses(SpringConfigurationContextProducer.class, ContextInjected.class,
+                        SpringBeanInjectedWithCdiBean.class, CdiBean.class, CdiDependency.class,
+                        SecondCdiBean.class, CdiQualifier.class);
     }
 
     @Test
     public void testSimpleBean(ContextInjected contextInjected) {
         Assert.assertNotNull(contextInjected);
+        final ApplicationContext injectedContext = contextInjected.getContext();
+        SpringBeanInjectedWithCdiBean springBeanInjectedWithCdiBean = injectedContext.getBean(SpringBeanInjectedWithCdiBean.class);
+        Assert.assertNotNull(springBeanInjectedWithCdiBean);
+        Assert.assertNotNull(springBeanInjectedWithCdiBean.getCdiBean());
+        Assert.assertNotNull(springBeanInjectedWithCdiBean.getCdiBean().getCdiDependency());
+        Assert.assertNotNull(springBeanInjectedWithCdiBean.getSecondCdiBean());
+        Assert.assertNotNull(springBeanInjectedWithCdiBean.getSecondCdiBean().getCdiDependency());
     }
-
 
 }

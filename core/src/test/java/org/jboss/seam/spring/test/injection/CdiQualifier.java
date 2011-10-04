@@ -15,16 +15,20 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.suites;
+package org.jboss.seam.spring.test.injection;
 
-import org.jboss.seam.spring.bootstrap.SpringBootstrapTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import javax.inject.Qualifier;
 
 /**
- * @author Marius Bogoevici
+ * @author: Marius Bogoevici
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses(SpringBootstrapTest.class)
-public class StandaloneTestSuite {
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD, ElementType.TYPE})
+public @interface CdiQualifier {
 }
