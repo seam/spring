@@ -33,4 +33,27 @@
         </xsd:complexType>
     </xsd:element>
 
+    <xsd:element name="bean-reference">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" name="qualifier" type="qualifierType"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:string" use="optional"/>
+            <xsd:attribute name="name" type="xsd:string" use="optional"/>
+            <xsd:attribute name="type" type="xsd:string" use="optional"/>
+            <xsd:attribute name="bean-manager" type="xsd:string" use="optional"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="qualifierType">
+        <xsd:sequence>
+            <xsd:element name="attribute" minOccurs="0" maxOccurs="unbounded" type="qualifierAttributeType"/>
+        </xsd:sequence>
+        <xsd:attribute name="type" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="qualifierAttributeType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="value" type="xsd:string" use="required"/>
+    </xsd:complexType>
 </xsd:schema>

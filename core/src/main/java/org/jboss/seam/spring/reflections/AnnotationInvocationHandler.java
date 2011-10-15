@@ -64,7 +64,7 @@ public class AnnotationInvocationHandler implements InvocationHandler, Annotatio
                 || method.getDeclaringClass().equals(Annotation.class)) {
             return method.invoke(this, args);
         }
-        if (registeredValues.containsKey(method.getName())) {
+        if (registeredValues != null && registeredValues.containsKey(method.getName())) {
             if (conversionService != null) {
                 return conversionService.convert(registeredValues.get(method.getName()), method.getReturnType());
             }

@@ -57,6 +57,7 @@ public class CdiBeanFactoryBean<T> implements FactoryBean<T>, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         Assert.notNull(beanManager, "A BeanManager instance must be provided");
+        Assert.notNull(cdiBeanLookup, "A CDI bean lookup strategy must be provided");
     }
 
     @Override
@@ -66,7 +67,7 @@ public class CdiBeanFactoryBean<T> implements FactoryBean<T>, InitializingBean {
 
     @Override
     public Class<?> getObjectType() {
-        return cdiBeanLookup != null ? cdiBeanLookup.getExpectedType() : null;
+        return cdiBeanLookup.getExpectedType();
     }
 
 

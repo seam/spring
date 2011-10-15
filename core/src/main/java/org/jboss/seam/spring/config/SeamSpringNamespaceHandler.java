@@ -27,9 +27,11 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 public class SeamSpringNamespaceHandler extends NamespaceHandlerSupport{
 
     public static final String BEAN_MANAGER_ELEMENT_NAME = "bean-manager";
+    private static final String BEAN_REFERENCE = "bean-reference";
 
     @Override
     public void init() {
         registerBeanDefinitionParser(BEAN_MANAGER_ELEMENT_NAME, new BeanManagerBeanDefinitionParser());
+        registerBeanDefinitionParser(BEAN_REFERENCE, new BeanManagerBeanDefinitionParser());
     }
 }

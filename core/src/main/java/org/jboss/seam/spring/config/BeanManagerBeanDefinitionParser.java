@@ -35,7 +35,7 @@ public class BeanManagerBeanDefinitionParser extends AbstractBeanDefinitionParse
     
     private static final String JNDI_BEAN_MANAGER_LOCATOR_CLASS = "org.jboss.seam.spring.config.JndiBeanManagerLocator";
 
-    public static final String DEFAULT_BEAN_MANAGER_ID = "beanManager";
+    public static final String DEFAULT_BEAN_MANAGER_ID = "cdiBeanManager";
 
     @Override
     protected AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
