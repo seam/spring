@@ -18,6 +18,7 @@ public class Dependencies {
 
     private static final String[] CORE_PACKAGE_NAMES = new String[]{
             ORG_JBOSS_SEAM_SPRING + ".bootstrap",
+            ORG_JBOSS_SEAM_SPRING + ".config",
             ORG_JBOSS_SEAM_SPRING + ".injection",
             ORG_JBOSS_SEAM_SPRING + ".reflections",
             ORG_JBOSS_SEAM_SPRING + ".utils"
@@ -45,6 +46,11 @@ public class Dependencies {
 
     private static volatile Collection<JavaArchive> SPRING_DEPENDENCIES = null;
     public static final String SEAM_SPRING_EXTENSION_LOCATION = "META-INF/services/javax.enterprise.inject.spi.Extension";
+    public static final String[] SPRING_NAMESPACE_RESOURCES = new String[]{
+            "META-INF/spring.schemas",
+            "META-INF/spring.handlers",
+            "org/jboss/seam/spring/config/seam-spring-3.1.xsd"
+    };
 
     static {
         // use system properties when running the test - use fallback values for IDE testing
@@ -80,5 +86,9 @@ public class Dependencies {
         return CORE_PACKAGE_NAMES;
     }
 
-
+    public static String[] springNamespaceResources() {
+        return SPRING_NAMESPACE_RESOURCES;
+    }
+    
+    
 }

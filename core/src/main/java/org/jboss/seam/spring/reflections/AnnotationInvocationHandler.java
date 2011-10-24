@@ -53,6 +53,14 @@ public class AnnotationInvocationHandler implements InvocationHandler, Annotatio
 
     public AnnotationInvocationHandler withAttributes(Map<String, Object> registeredValues) {
         this.registeredValues = registeredValues;
+        for (Method method : annotationType.getDeclaredMethods()) {
+            final String currentAttribute = method.getName();
+            Object registeredValue = registeredValues.get(currentAttribute);
+            if (registeredValue == null && method.getDefaultValue() == null) {
+                throw new IllegalArgumentException("Required attribute '" + currentAttribute + "' not set for "
+                        + annotationType.getName() + " instance, and no default is specified");
+            }
+        }
         return this;
     }
 
@@ -64,7 +72,7 @@ public class AnnotationInvocationHandler implements InvocationHandler, Annotatio
                 || method.getDeclaringClass().equals(Annotation.class)) {
             return method.invoke(this, args);
         }
-        if (registeredValues.containsKey(method.getName())) {
+        if (registeredValues != null && registeredValues.containsKey(method.getName())) {
             if (conversionService != null) {
                 return conversionService.convert(registeredValues.get(method.getName()), method.getReturnType());
             }

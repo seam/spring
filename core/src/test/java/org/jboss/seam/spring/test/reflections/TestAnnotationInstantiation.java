@@ -22,6 +22,9 @@ import org.jboss.seam.spring.reflections.Annotations;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author: Marius Bogoevici
  */
@@ -34,5 +37,30 @@ public class TestAnnotationInstantiation {
         Assert.assertNotNull(springContext.annotationType());
         Assert.assertNotNull(springContext.name());
         Assert.assertEquals("default", springContext.name());
+    }
+
+    @Test
+    public void testAnnotationWithAllParametersSet() {
+        Map<String, Object> teamAttributes = new HashMap<String, Object>();
+        teamAttributes.put("name", "Ireland");
+        teamAttributes.put("size", 7);
+        Team team = Annotations.instanceOf(Team.class, teamAttributes);
+        Assert.assertEquals(7, team.size());
+        Assert.assertEquals("Ireland", team.name());
+    }
+
+    @Test
+    public void testAnnotationWithDefaults() {
+        Map<String, Object> teamAttributes = new HashMap<String, Object>();
+        teamAttributes.put("name", "Ireland");
+        Team team = Annotations.instanceOf(Team.class, teamAttributes);
+        Assert.assertEquals(15, team.size());
+        Assert.assertEquals("Ireland", team.name());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAnnotationWithMissingAttributes() {
+        Map<String, Object> teamAttributes = new HashMap<String, Object>();
+        Team team = Annotations.instanceOf(Team.class, teamAttributes);
     }
 }
