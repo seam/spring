@@ -35,4 +35,11 @@
     <cdi:bean-reference id="secondCdiBean" type="org.jboss.seam.spring.test.injection.SecondCdiBean">
         <cdi:qualifier type="org.jboss.seam.spring.test.injection.CdiQualifier"/>
     </cdi:bean-reference>
+
+    <cdi:bean-reference id="thirdCdiBean" type="org.jboss.seam.spring.test.injection.ThirdCdiBean">
+        <cdi:qualifier type="org.jboss.seam.spring.test.injection.CdiQualifierWithAttributes">
+            <cdi:attribute name="name" value="myBean"/>
+        </cdi:qualifier>
+    </cdi:bean-reference>
+
 </beans>

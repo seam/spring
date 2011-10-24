@@ -41,7 +41,7 @@ public class BeanImportNamespaceTest {
                 .addAsResource("META-INF/spring.handlers")
                 .addAsResource("org/jboss/seam/spring/config/seam-spring-3.1.xsd")
                 .addClasses(WebContextProducer.class, ContextInjected.class, CdiBean.class, CdiDependency.class,
-                        CdiQualifier.class, SecondCdiBean.class, SpringBeanInjectedWithCdiBean.class);
+                        CdiQualifier.class, SecondCdiBean.class, SpringBeanInjectedWithCdiBean.class, ThirdCdiBean.class, CdiQualifierWithAttributes.class);
     }
 
 
@@ -56,6 +56,8 @@ public class BeanImportNamespaceTest {
         Assert.assertNotNull(springBean);
         Assert.assertNotNull(springBean.getCdiBean());
         Assert.assertNotNull(springBean.getSecondCdiBean());
+        ThirdCdiBean thirdCdiBean = applicationContext.getBean(ThirdCdiBean.class);
+        Assert.assertNotNull(thirdCdiBean);
     }
 
 }
