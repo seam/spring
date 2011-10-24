@@ -50,7 +50,7 @@ public class CdiBeanImportBeanDefinitionParser extends AbstractBeanDefinitionPar
     public AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
         BeanDefinitionBuilder cdiBeanFactoryBuilder = BeanDefinitionBuilder.rootBeanDefinition(FACTORY_BEAN_CLASS_NAME);
         String beanManagerReference = element.getAttribute(BEAN_MANAGER_REFERENCE);
-        if (beanManagerReference != null) {
+        if (StringUtils.hasText(beanManagerReference)) {
             cdiBeanFactoryBuilder.addPropertyReference("beanManager", beanManagerReference);
         } else {
             cdiBeanFactoryBuilder.addPropertyReference("beanManager", DEFAULT_BEAN_MANAGER_ID);

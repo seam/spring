@@ -32,6 +32,6 @@ public class SeamSpringNamespaceHandler extends NamespaceHandlerSupport{
     @Override
     public void init() {
         registerBeanDefinitionParser(BEAN_MANAGER_ELEMENT_NAME, new BeanManagerBeanDefinitionParser());
-        registerBeanDefinitionParser(BEAN_REFERENCE, new BeanManagerBeanDefinitionParser());
+        registerBeanDefinitionParser(BEAN_REFERENCE, new CdiBeanImportBeanDefinitionParser());
     }
 }

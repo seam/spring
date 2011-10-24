@@ -16,7 +16,9 @@
   -->
 <xsd:schema xmlns="http://www.jboss.org/schema/seam/spring"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://www.jboss.org/schema/seam/spring">
+            targetNamespace="http://www.jboss.org/schema/seam/spring"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
 
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
 
@@ -36,7 +38,7 @@
     <xsd:element name="bean-reference">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element minOccurs="0" maxOccurs="unbounded" name="qualifier" type="qualifierType"/>
+                <xsd:element minOccurs="0" maxOccurs="unbounded" name="qualifier" type="qualifier"/>
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:string" use="optional"/>
             <xsd:attribute name="name" type="xsd:string" use="optional"/>
@@ -45,14 +47,14 @@
         </xsd:complexType>
     </xsd:element>
 
-    <xsd:complexType name="qualifierType">
+    <xsd:complexType name="qualifier">
         <xsd:sequence>
-            <xsd:element name="attribute" minOccurs="0" maxOccurs="unbounded" type="qualifierAttributeType"/>
+            <xsd:element name="attribute" minOccurs="0" maxOccurs="unbounded" type="cdiQualifierAttributeType"/>
         </xsd:sequence>
         <xsd:attribute name="type" type="xsd:string" use="required"/>
     </xsd:complexType>
 
-    <xsd:complexType name="qualifierAttributeType">
+    <xsd:complexType name="cdiQualifierAttributeType">
         <xsd:attribute name="name" type="xsd:string" use="required"/>
         <xsd:attribute name="value" type="xsd:string" use="required"/>
     </xsd:complexType>

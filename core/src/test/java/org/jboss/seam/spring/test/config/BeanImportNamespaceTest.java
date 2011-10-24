@@ -1,0 +1,61 @@
+package org.jboss.seam.spring.test.config;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.test.bootstrap.*;
+import org.jboss.seam.spring.test.bootstrap.WebContextProducer;
+import org.jboss.seam.spring.test.injection.*;
+import org.jboss.seam.spring.test.utils.ContextInjected;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+
+import javax.enterprise.inject.spi.BeanManager;
+
+import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
+import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
+
+/**
+ * @author Marius Bogoevici
+ */
+
+@RunWith(Arquillian.class)
+public class BeanImportNamespaceTest {
+
+    @Deployment
+    public static Archive<?> deployment() {
+        return ShrinkWrap.create(WebArchive.class, "test.war")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .setWebXML("org/jboss/seam/spring/test/common/web.xml")
+                .addAsWebInfResource("org/jboss/seam/spring/test/config/webinf/applicationContextWithImport.xml", "applicationContext.xml")
+                .addAsResource("META-INF/services/javax.enterprise.inject.spi.Extension")
+                .addAsLibraries(springDependencies())
+                .addPackages(true, corePackages())
+                .addAsResource("META-INF/spring.schemas")
+                .addAsResource("META-INF/spring.handlers")
+                .addAsResource("org/jboss/seam/spring/config/seam-spring-3.1.xsd")
+                .addClasses(WebContextProducer.class, ContextInjected.class, CdiBean.class, CdiDependency.class,
+                        CdiQualifier.class, SecondCdiBean.class, SpringBeanInjectedWithCdiBean.class);
+    }
+
+
+    @Test
+    public void testSimpleBean(@SpringContext ApplicationContext applicationContext) {
+        Assert.assertNotNull(applicationContext);
+        BeanManager beanManager = applicationContext.getBean(BeanManager.class);
+        Assert.assertNotNull(beanManager);
+        CdiBean cdiBean = applicationContext.getBean(CdiBean.class);
+        Assert.assertNotNull(cdiBean);
+        SpringBeanInjectedWithCdiBean springBean = applicationContext.getBean(SpringBeanInjectedWithCdiBean.class);
+        Assert.assertNotNull(springBean);
+        Assert.assertNotNull(springBean.getCdiBean());
+        Assert.assertNotNull(springBean.getSecondCdiBean());
+    }
+
+}
