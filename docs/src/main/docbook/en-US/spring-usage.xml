@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  JBoss, Home of Professional Open Source
+  Copyright [2010], Red Hat, Inc., and individual contributors
+  by the @authors tag. See the copyright.txt in the distribution for a
+  full listing of individual contributors.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter id="spring-installation">
+  <title>Seam Spring - Usage</title>
+
+  <para>For using the Seam Spring module,</para>
+
+  <section>
+    <title>Accessing Spring application contexts</title>
+
+    <para>The Seam Spring module can access two types of
+    contexts:<itemizedlist>
+        <listitem>
+          <para>contexts created by the application (e.g. bootstrapped by
+          Spring's <code>ContextLoaderListener</code>); and</para>
+        </listitem>
+
+        <listitem>
+          <para>contexts bootstrapped by the extension itself.</para>
+        </listitem>
+      </itemizedlist></para>
+
+    <section>
+      <title>The <code>@SpringContext</code> qualifier</title>
+
+      <para>As a general rule, Spring <code>ApplicationContext</code>
+      instances that the extension is interacting with are installed as CDI
+      beans with a <code>@SpringContext</code> qualifier, with the following
+      structure:</para>
+
+      <para><informalexample>
+          <informalexample>
+            <programlisting>@Qualifier
+@Inherited
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
+public @interface SpringContext {
+    String name() default "default";
+}
+</programlisting>
+          </informalexample>
+        </informalexample></para>
+
+      <para>The name attribute of the context helps identifying between
+      different ApplicationContexts, if the extension needs to deal with
+      multiple such instances.</para>
+
+      <para><table>
+          <title>Attributes of
+          @org.jboss.seam.spring.bootstrap.SpringContext</title>
+
+          <tgroup cols="3">
+            <thead>
+              <row>
+                <entry>Attribute</entry>
+
+                <entry>Type</entry>
+
+                <entry>Significance</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry><code>name</code></entry>
+
+                <entry><code>String</code></entry>
+
+                <entry>Unique identifier for a Spring application context
+                bean</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
+    </section>
+
+    <section>
+      <title>Using producer fields for Spring contexts</title>
+
+      <para>CDI applications can install Spring contexts as CDI beans by
+      defining producer fields with the following general pattern:</para>
+
+      <para><informalexample>
+          <para><programlisting>   @Produces
+   @SpringContext
+   @&lt;Context-Type&gt;
+   ApplicationContext context;</programlisting></para>
+
+          <para>This will create a CDI bean of the ApplicationContext type.
+          The nature of the context (bootstrapped by the extension, or looked
+          up elsewhere) is controlled by a specific annotation. The supported
+          annotations are detailed in the following subsections.</para>
+        </informalexample></para>
+
+      <tip>
+        <para>As a reminder, if the <code>name</code> attribute of the
+        <code>@SpringContext</code> qualifier is not set, it will be set to
+        'default'.</para>
+      </tip>
+
+      <section>
+        <title>Installing a web application context as a CDI bean</title>
+
+        <para>The Seam Spring extension can install a web application context
+        (the application context created by a ContextLoaderListener) by
+        defining a producer field, as follows:</para>
+
+        <para><informalexample>
+            <programlisting>package org.jboss.seam.spring.test.bootstrap;
+
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.bootstrap.Web;
+import org.springframework.context.ApplicationContext;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
+
+public class WebContextProducer {
+
+   @Produces
+   @SpringContext
+   @Web
+   ApplicationContext context;
+
+}
+
+</programlisting>
+          </informalexample></para>
+
+        <note>
+          <para>The example above will work only in a web application with a
+          Spring application context boostrapped by a
+          ContextLoaderListener.</para>
+        </note>
+
+        <para>The <code>@org.jboss.seam.spring.bootstrap.Web</code> annotation
+        must be placed only on the producer field for the
+        <code>ApplicationContext</code>, and it will register a producer that
+        looks up the parent web <code>ApplicationContext</code>. </para>
+      </section>
+
+      <section>
+        <title>Installing a custom-configured Spring application
+        context</title>
+
+        <para>The Seam Spring extension can create a Spring application ad-hoc
+        and install it as a Spring context as follows:</para>
+
+        <para><informalexample>
+            <programlisting>package org.jboss.seam.spring.test.bootstrap;
+
+import org.jboss.seam.spring.bootstrap.Configuration;
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.springframework.context.ApplicationContext;
+
+import javax.enterprise.inject.Produces;
+
+public class ConfigurationContextProducer {
+
+   @Produces
+   @SpringContext
+   @Configuration(locations = "classpath*:org/jboss/seam/spring/test/bootstrap/applicationContext.xml")
+   ApplicationContext context;
+
+}
+</programlisting>
+          </informalexample>The
+        <code>@org.jboss.seam.spring.bootstrap.Configuration</code> annotation
+        must be placed only on the producer field of the
+        <code>ApplicationContext</code>, and it will register a producer that
+        creates an <code>ApplicationContext</code> from the files in the
+        locations attribute of the annotation.</para>
+
+        <para>The attributes supported by
+        @org.jboss.seam.spring.bootstrap.Configuration are listed in the
+        following table:<table>
+            <title>Attributes of the
+            @org.jboss.seam.spring.bootstrap.Configuration</title>
+
+            <tgroup cols="3">
+              <thead>
+                <row>
+                  <entry>Attribute</entry>
+
+                  <entry>Type</entry>
+
+                  <entry>Significance</entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry><code>locations</code></entry>
+
+                  <entry><code>String</code></entry>
+
+                  <entry>Comma-separated list of file locations. Observes the
+                  conventions regarding the 'classpath:', 'classpath*:' and
+                  'file:' prefixes of Spring</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table></para>
+      </section>
+    </section>
+
+    <section>
+      <title>Implicit Spring context bootstrapping </title>
+
+      <para>The producer fields provide a convenient and accesible way of
+      registering a Spring ApplicationContext, especially for looking up
+      contexts created externally (although direct bootstrap is supported as
+      well). A number of Spring ApplicationContexts can also be created by the
+      extension itself.</para>
+
+      <para>This can be done by creating a file named
+      /META-INF/org.jboss.seam.spring.contexts which contains a number of
+      key-value pairs, with the keys representing context names and values
+      representing context locations, as follows:</para>
+
+      <para><informalexample>
+          <programlisting>default=classpath*:org/jboss/seam/spring/test/bootstrap/applicationContext.xml</programlisting>
+        </informalexample></para>
+
+      <note>
+        <para>The extension supports the registration of multiple application
+        contexts.</para>
+      </note>
+
+      <para>An important feature of Spring context bootstrapping is that
+      Spring beans will be automatically vetoed as CDI beans.</para>
+
+      <sidebar>
+        <para>The main difference between implicit bootstrapping and
+        producer-field based bootstrapping is that implicit bootstrapping
+        creates the Spring context during CDI deployment and explicit
+        bootstrapping creates a Spring context after deployment. As such,
+        implicit deployment can do various tasks such as auto-vetoing Spring
+        beans and preventing them to be deployed as CDI beans.</para>
+      </sidebar>
+    </section>
+  </section>
+
+  <!--
+vim:et:ts=3:sw=3:tw=120
+-->
+</chapter>

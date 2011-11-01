@@ -15,24 +15,42 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <chapter id="spring-introduction">
-   <title>Seam Spring - Introduction</title>
+  <title>Seam Spring - Introduction</title>
 
-   <para>
+  <para>The Seam Spring module aims to provide a mechanism for integrating the
+  <ulink url="http://www.springframework.org">Spring</ulink> development model
+  with <ulink url="http://jcp.org/en/jsr/detail?id=299">CDI</ulink>.</para>
 
-   </para>
-    
-   <section id="spring_introduction.foo">
-      <title>Section Title</title>
+  <section id="spring_introduction.foo">
+    <title>Features</title>
 
-      <para>
-        Insert content here.
-      </para>
+    <para>The current version of the module provides support for:<itemizedlist>
+        <listitem>
+          <para>bootstrapping a Spring application context and making it
+          accessible as a CDI bean;</para>
+        </listitem>
 
-   </section>
+        <listitem>
+          <para>registering an independently bootstrapped application context
+          as a CDI bean;</para>
+        </listitem>
 
-   <!--
+        <listitem>
+          <para>accessing Spring beans accessible via CDI (i.e. as managed beans)
+          - for injection and lookup;</para>
+        </listitem>
+
+        <listitem>
+          <para>accessing CDI beans from within a Spring application
+          context;</para>
+        </listitem>
+      </itemizedlist></para>
+  </section>
+
+  <!--
    vim:et:ts=3:sw=3:tw=120
    -->
 </chapter>

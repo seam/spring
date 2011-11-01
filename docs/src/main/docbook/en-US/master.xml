@@ -26,6 +26,7 @@
    <title>Seam Spring</title>
    <xi:include href="spring-introduction.xml"/>
    <xi:include href="spring-installation.xml"/>
+   <xi:include href="spring-usage.xml"/>
 
 <!--
  vim:et:ts=3:sw=3:tw=120
