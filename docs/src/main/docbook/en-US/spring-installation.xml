@@ -28,7 +28,7 @@
 	   </para>
 	   <programlisting role="XML"><![CDATA[<dependency>
    <groupId>org.jboss.seam.spring</groupId>
-   <artifactId>seam-spring</artifactId>
+   <artifactId>seam-spring-core</artifactId>
    <version>${seam.spring.version}</version>
 </dependency>]]></programlisting>
 	   <tip>
