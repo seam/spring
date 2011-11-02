@@ -259,6 +259,117 @@ public class ConfigurationContextProducer {
     </section>
   </section>
 
+  <section>
+    <title>Exposing Spring beans as CDI beans</title>
+
+    <para>Once one or more Spring ApplicationContexts are installed </para>
+
+    <para>Spring beans can be added as CDI beans explicitly, using a producer
+    field. In order to do so, a Spring ApplicationContext must be registered
+    if they are created by one of the CDI-accessible Spring contexts, as shown
+    in the previous section. This can be done by producer fields and the
+    @SpringBean annotation, as in the following example:</para>
+
+    <informalexample>
+      <para><programlisting>public class SimpleBeanProducer {
+
+    @Produces @SpringBean(fromContext = "context2") SimpleBean simpleBean;
+
+    @Produces @SpringBean ComplicatedBean complicatedBean;
+}
+</programlisting>The result is that two CDI beans are available for injection
+      and lookup: one based on the SimpleBean Spring bean defined in the
+      Spring context registered as 'context2' and the other, based on the
+      ComplicatedBean defined in the Spring context registered as 'default'.
+      </para>
+    </informalexample>
+  </section>
+
+  <section>
+    <title>Importing CDI beans into Spring applications</title>
+
+    <para>The Seam Spring module also supports the registration of CDI beans
+    as Spring beans. This can be done by using the dedicated CDI namespace,
+    which can be defined as in the following example:</para>
+
+    <informalexample>
+      <para><programlisting>&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cdi="http://www.jboss.org/schema/seam/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.jboss.org/schema/seam/spring http://www.jboss.org/schema/seam/spring/seam-spring.xsd"&gt;
+
+   &lt;!-- bean definitions --&gt;
+
+&lt;/beans&gt;</programlisting></para>
+    </informalexample>
+
+    <section>
+      <title>Registering a BeanManager</title>
+
+      <para>Spring applications can get access to a BeanManager through the
+      following bean definition.</para>
+
+      <informalexample>
+        <para><programlisting>&lt;cdi:bean-manager/&gt;</programlisting></para>
+      </informalexample>
+
+      <para>The bean has the id 'beanManager' by default.</para>
+    </section>
+
+    <section>
+      <title>Importing a CDI bean as a Spring bean</title>
+
+      <para>A CDI bean can be imported as a Spring bean by using a namespace
+      element as follows:<informalexample>
+          <para><programlisting>&lt;cdi:bean-reference id="cdiBean" type="org.jboss.seam.spring.test.injection.CdiBean"/&gt;</programlisting></para>
+        </informalexample></para>
+
+      <para>A CDI bean with qualfiers can be imported as follows:</para>
+
+      <para><informalexample>
+          <para><programlisting>&lt;cdi:bean-reference id="secondCdiBean" type="org.jboss.seam.spring.test.injection.SecondCdiBean"&gt;
+  &lt;cdi:qualifier type="org.jboss.seam.spring.test.injection.CdiQualifier"/&gt;
+&lt;/cdi:bean-reference&gt;</programlisting></para>
+        </informalexample></para>
+
+      <para>If the qualifiers have attributes, the bean can be imported as
+      follows:</para>
+
+      <para><informalexample>
+          <para><programlisting>&lt;cdi:bean-reference id="thirdCdiBean" type="org.jboss.seam.spring.test.injection.ThirdCdiBean"&gt;
+  &lt;cdi:qualifier type="org.jboss.seam.spring.test.injection.CdiQualifierWithAttributes"&gt;
+     &lt;cdi:attribute name="name" value="myBean"/&gt;
+  &lt;/cdi:qualifier&gt;
+ &lt;/cdi:bean-reference&gt;</programlisting></para>
+
+          <para>The conversion from String to the actual type of the attribute
+          is handled by Spring's ConversionService.</para>
+
+          <para>CDI beans are imported as prototype-scoped Spring beans, which
+          means that a new reference is acquired every time the bean is
+          injected into a Spring bean. This is done in order to preserve the
+          original scope of the CDI bean.</para>
+        </informalexample></para>
+    </section>
+
+    <section>
+      <title>Injecting CDI beans into Spring beans</title>
+
+      <para>A CDI bean that has been imported as a Spring bean can be injected
+      through either XML or annotation-based injection. For example, with the
+      definitions above, a Spring application can either do: </para>
+
+      <para><informalexample>
+          <para><programlisting>&lt;cdi:bean-reference id="secondCdiBean" type="org.jboss.seam.spring.test.injection.SecondCdiBean"&gt;
+  &lt;cdi:qualifier type="org.jboss.seam.spring.test.injection.CdiQualifier"/&gt;
+&lt;/cdi:bean-reference&gt;</programlisting></para>
+        </informalexample></para>
+
+      <para>or:</para>
+    </section>
+  </section>
+
   <!--
 vim:et:ts=3:sw=3:tw=120
 -->
