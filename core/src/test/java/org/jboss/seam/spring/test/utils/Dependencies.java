@@ -1,10 +1,10 @@
 package org.jboss.seam.spring.test.utils;
 
+import java.util.Collection;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
-
-import java.util.Collection;
 
 /**
  * @author Marius Bogoevici

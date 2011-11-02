@@ -15,9 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.reflections;
-
-import org.springframework.core.convert.support.GenericConversionService;
+package org.jboss.seam.spring.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Proxy;
@@ -34,7 +32,8 @@ public class Annotations {
     /**
      * Create an {@link Annotation} instance from its given class
      * @param clazz - the annotation class
-     * @param attributes - atrt
+     * @param attributes - attribute values for the annotation (if not set, the default will be used,
+     *                   must be set for attributes that do no specify a default)
      * @param <T> the annotation type
      * @return an annotation instance
      */

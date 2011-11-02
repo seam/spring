@@ -17,18 +17,25 @@
 
 package org.jboss.seam.spring.bootstrap;
 
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.spi.AfterBeanDiscovery;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.BeforeBeanDiscovery;
+import javax.enterprise.inject.spi.Extension;
+import javax.enterprise.inject.spi.ProcessAnnotatedType;
+import javax.enterprise.inject.spi.ProcessProducer;
+
 import org.jboss.seam.spring.injection.SpringBean;
 import org.jboss.seam.spring.utils.Locations;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.spi.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-
-import static org.jboss.seam.spring.utils.Locations.SEAM_SPRING_CONTEXTS_LOCATION;
 
 /**
  * @author: Marius Bogoevici

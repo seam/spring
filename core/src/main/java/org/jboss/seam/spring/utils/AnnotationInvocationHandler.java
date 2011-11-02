@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.reflections;
-
-import org.springframework.core.convert.ConversionService;
+package org.jboss.seam.spring.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.core.convert.ConversionService;
 
 /**
  * {@link InvocationHandler} implementation for dynamically instantiating annotations

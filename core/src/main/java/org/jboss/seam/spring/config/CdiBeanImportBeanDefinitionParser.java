@@ -17,6 +17,13 @@
 
 package org.jboss.seam.spring.config;
 
+import static org.jboss.seam.spring.config.BeanManagerBeanDefinitionParser.DEFAULT_BEAN_MANAGER_ID;
+import static org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup.Qualifier;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -28,13 +35,6 @@ import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.jboss.seam.spring.config.BeanManagerBeanDefinitionParser.DEFAULT_BEAN_MANAGER_ID;
-import static org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup.Qualifier;
 
 /**
  * @author: Marius Bogoevici

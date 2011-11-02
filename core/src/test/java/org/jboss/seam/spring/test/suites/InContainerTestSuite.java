@@ -19,6 +19,8 @@ package org.jboss.seam.spring.test.suites;
 
 import org.jboss.seam.spring.test.bootstrap.SpringBootstrapInContainerTest;
 import org.jboss.seam.spring.test.bootstrap.SpringWebContextAccessTest;
+import org.jboss.seam.spring.test.config.BeanImportNamespaceTest;
+import org.jboss.seam.spring.test.config.BeanManagerNamespaceElementTest;
 import org.jboss.seam.spring.test.injection.InjectionOfCdiBeanWebContextTest;
 import org.jboss.seam.spring.test.injection.SpringBootstrapByExtensionTest;
 import org.junit.runner.RunWith;
@@ -32,6 +34,8 @@ import org.junit.runners.Suite;
         { SpringBootstrapInContainerTest.class,
                 SpringBootstrapByExtensionTest.class,
                 SpringWebContextAccessTest.class,
-                InjectionOfCdiBeanWebContextTest.class})
+                InjectionOfCdiBeanWebContextTest.class,
+                BeanImportNamespaceTest.class,
+                BeanManagerNamespaceElementTest.class})
 public class InContainerTestSuite {
 }
