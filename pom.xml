@@ -21,7 +21,7 @@
    <parent>
       <artifactId>seam-parent</artifactId>
       <groupId>org.jboss.seam</groupId>
-      <version>15-SNAPSHOT</version>
+      <version>16</version>
    </parent>
 
    <groupId>org.jboss.seam.spring</groupId>
