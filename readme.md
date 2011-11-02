@@ -9,9 +9,3 @@ Building
 
   mvn clean package
 
-
-In-container testing
-====================
-
-  export JBOSS_HOME=<jboss-as-7-location>
-  mvn clean test -Dincontainer

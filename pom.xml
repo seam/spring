@@ -15,210 +15,208 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-   <parent>
-      <artifactId>seam-parent</artifactId>
-      <groupId>org.jboss.seam</groupId>
-      <version>16</version>
-   </parent>
+    <parent>
+        <artifactId>seam-parent</artifactId>
+        <groupId>org.jboss.seam</groupId>
+        <version>16</version>
+    </parent>
 
-   <groupId>org.jboss.seam.spring</groupId>
-   <artifactId>seam-spring-parent</artifactId>
-   <packaging>pom</packaging>
-   <version>3.1.0-SNAPSHOT</version>
-   <name>Seam Spring Module</name>
-   <url>http://www.seamframework.org/Seam3/SpringModuleHome</url>
+    <groupId>org.jboss.seam.spring</groupId>
+    <artifactId>seam-spring-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>3.1.0-SNAPSHOT</version>
+    <name>Seam Spring Module</name>
+    <url>http://www.seamframework.org/Seam3/SpringModuleHome</url>
 
-   <properties>
-      <seam.version>3.0.0.Final</seam.version>
-      <spring.version>3.0.5.RELEASE</spring.version>
-      <jboss.spec.version>1.0.0.CR1</jboss.spec.version>
-       <maven.version>3.0.1</maven.version>
-       <aether.version>1.8</aether.version>
-       <commons.logging.version>1.1.1</commons.logging.version>
-   </properties>
+    <properties>
+        <seam.version>3.1.0.Beta4</seam.version>
+        <spring.version>3.0.5.RELEASE</spring.version>
+        <jboss.spec.version>1.0.0.CR1</jboss.spec.version>
+        <maven.version>3.0.1</maven.version>
+        <aether.version>1.8</aether.version>
+        <commons.logging.version>1.1.1</commons.logging.version>
+        <shrinkwrap.version>1.0.0-beta-6</shrinkwrap.version>
+        <shrinkwrap.resolver.version>1.0.0-beta-5</shrinkwrap.resolver.version>
+    </properties>
 
-   <modules>
-      <module>core</module>
-   </modules>
+    <modules>
+        <module>core</module>
+        <module>testsuite</module>
+    </modules>
 
-   <dependencyManagement>
-      <dependencies>
+    <dependencyManagement>
+        <dependencies>
 
-         <dependency>
-            <groupId>org.jboss.seam</groupId>
-            <artifactId>seam-bom</artifactId>
-            <version>${seam.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
+            <dependency>
+                <groupId>org.jboss.seam</groupId>
+                <artifactId>seam-bom</artifactId>
+                <version>${seam.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-         <!-- Spring Framework dependencies -->
-         <dependency>
-             <groupId>org.springframework</groupId>
-             <artifactId>spring-context-support</artifactId>
-             <version>${spring.version}</version>
-         </dependency>
+            <!-- Spring Framework dependencies -->
 
-          <dependency>
-              <groupId>org.springframework</groupId>
-              <artifactId>spring-web</artifactId>
-              <version>${spring.version}</version>
-          </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+                <optional>true</optional>
+            </dependency>
 
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+                <optional>true</optional>
+            </dependency>
 
-         <!-- Override submodule versions from org.jboss.seam:seam-bom -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+                <optional>true</optional>
+            </dependency>
 
-         <dependency>
-            <groupId>org.jboss.seam.spring</groupId>
-            <artifactId>seam-spring-core</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-         
-         <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-6.0</artifactId>
-            <version>${jboss.spec.version}</version>
-            <type>pom</type>
-         </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+                <optional>true</optional>
+            </dependency>
 
-          <dependency>
-              <groupId>org.apache.maven</groupId>
-              <artifactId>maven-settings-builder</artifactId>
-              <version>${maven.version}</version>
-          </dependency>
-          <dependency>
-              <groupId>org.apache.maven</groupId>
-              <artifactId>maven-aether-provider</artifactId>
-              <version>${maven.version}</version>
-          </dependency>
-          <dependency>
-              <groupId>org.sonatype.aether</groupId>
-              <artifactId>aether-util</artifactId>
-              <version>${aether.version}</version>
-              <scope>test</scope>
-          </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+                <optional>true</optional>
+            </dependency>
 
-          <dependency>
-              <groupId>org.sonatype.aether</groupId>
-              <artifactId>aether-impl</artifactId>
-              <version>${aether.version}</version>
-              <scope>test</scope>
-          </dependency>
+            <dependency>
+                <groupId>org.jboss.seam.spring</groupId>
+                <artifactId>seam-spring-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-          <dependency>
-              <groupId>org.sonatype.aether</groupId>
-              <artifactId>aether-connector-wagon</artifactId>
-              <version>${aether.version}</version>
-              <scope>test</scope>
-              <exclusions>
-                  <exclusion>
-                      <artifactId>junit</artifactId>
-                      <groupId>junit</groupId>
-                  </exclusion>
-              </exclusions>
-          </dependency>
+             <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-settings-builder</artifactId>
+                <version>${maven.version}</version>
+            </dependency>
 
-          <dependency>
-              <groupId>org.sonatype.aether</groupId>
-              <artifactId>aether-api</artifactId>
-              <version>${aether.version}</version>
-          </dependency>
-          <dependency>
-              <groupId>org.springframework</groupId>
-              <artifactId>spring-tx</artifactId>
-              <version>${spring.version}</version>
-          </dependency>
-          <dependency>
-              <groupId>org.springframework</groupId>
-              <artifactId>spring-core</artifactId>
-              <version>${spring.version}</version>
-          </dependency>
-          <dependency>
-              <groupId>org.springframework</groupId>
-              <artifactId>spring-beans</artifactId>
-              <version>${spring.version}</version>
-          </dependency>
-          <dependency>
-              <groupId>commons-logging</groupId>
-              <artifactId>commons-logging</artifactId>
-              <version>${commons.logging.version}</version>
-          </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-aether-provider</artifactId>
+                <version>${maven.version}</version>
+            </dependency>
 
-      </dependencies>
-   </dependencyManagement>
+            <dependency>
+                <groupId>org.sonatype.aether</groupId>
+                <artifactId>aether-util</artifactId>
+                <version>${aether.version}</version>
+            </dependency>
 
-   <!-- Dependencies common to the api and implementation(s) -->
-   <dependencies>
-      <dependency>
-         <groupId>javax.enterprise</groupId>
-         <artifactId>cdi-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-   </dependencies>
+            <dependency>
+                <groupId>org.sonatype.aether</groupId>
+                <artifactId>aether-impl</artifactId>
+                <version>${aether.version}</version>
+                <scope>test</scope>
+            </dependency>
 
-   <profiles>
-      <profile>
-         <id>distribution</id>
-         <activation>
-            <property>
-               <name>release</name>
-            </property>
-         </activation>
-         <modules>
-            <module>docs</module>
-            <!--module>examples/simple</module-->
-            <module>dist</module>
-         </modules>
-      </profile>
-      <profile>
-         <id>jboss-public-repository</id>
-         <activation>
-            <property>
-               <name>jboss-public-repository</name>
-               <value>!false</value>
-            </property>
-         </activation>
-         <repositories>
-            <repository>
-               <id>jboss-public-repository-group</id>
-               <name>JBoss Public Maven Repository Group</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <releases>
-                  <enabled>true</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </releases>
-               <snapshots>
-                  <enabled>false</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </snapshots>
-            </repository>
-         </repositories>
-         <pluginRepositories>
-            <pluginRepository>
-               <id>jboss-public-repository-group</id>
-               <name>JBoss Public Maven Repository Group</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <releases>
-                  <enabled>true</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </releases>
-               <snapshots>
-                  <enabled>false</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </snapshots>
-            </pluginRepository>
-         </pluginRepositories>
-      </profile>
+            <dependency>
+                <groupId>org.sonatype.aether</groupId>
+                <artifactId>aether-connector-wagon</artifactId>
+                <version>${aether.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>junit</artifactId>
+                        <groupId>junit</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-   </profiles>
+            <dependency>
+                <groupId>org.sonatype.aether</groupId>
+                <artifactId>aether-api</artifactId>
+                <version>${aether.version}</version>
+            </dependency>
 
-   <scm>
-      <connection>scm:git:git://github.com/seam/spring.git</connection>
-      <developerConnection>scm:git:git@github.com:seam/spring.git</developerConnection>
-      <url>http://github.com/seam/spring</url>
-   </scm>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Dependencies common to the api and implementation(s) -->
+    <dependencies>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>distribution</id>
+            <activation>
+                <property>
+                    <name>release</name>
+                </property>
+            </activation>
+            <modules>
+                <module>docs</module>
+                <!--module>examples/simple</module-->
+                <module>dist</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>jboss-public-repository</id>
+            <activation>
+                <property>
+                    <name>jboss-public-repository</name>
+                    <value>!false</value>
+                </property>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>jboss-public-repository-group</id>
+                    <name>JBoss Public Maven Repository Group</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>jboss-public-repository-group</id>
+                    <name>JBoss Public Maven Repository Group</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <scm>
+        <connection>scm:git:git://github.com/seam/spring.git</connection>
+        <developerConnection>scm:git:git@github.com:seam/spring.git</developerConnection>
+        <url>http://github.com/seam/spring</url>
+    </scm>
 
 </project>
