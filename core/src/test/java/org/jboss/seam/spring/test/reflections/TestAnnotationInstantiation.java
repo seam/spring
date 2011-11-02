@@ -17,13 +17,13 @@
 
 package org.jboss.seam.spring.test.reflections;
 
-import org.jboss.seam.spring.bootstrap.SpringContext;
-import org.jboss.seam.spring.reflections.Annotations;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.utils.Annotations;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author: Marius Bogoevici

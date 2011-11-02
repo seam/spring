@@ -17,10 +17,10 @@
 
 package org.jboss.seam.spring.injection;
 
-import org.springframework.beans.factory.BeanCreationException;
-
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
+
+import org.springframework.beans.factory.BeanCreationException;
 
 /**
  * @author: Marius Bogoevici

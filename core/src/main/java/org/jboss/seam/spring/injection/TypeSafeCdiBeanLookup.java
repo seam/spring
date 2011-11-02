@@ -17,7 +17,16 @@
 
 package org.jboss.seam.spring.injection;
 
-import org.jboss.seam.spring.reflections.AnnotationInvocationHandler;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.BeanManager;
+
+import org.jboss.seam.spring.utils.AnnotationInvocationHandler;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.context.ApplicationContext;
@@ -26,15 +35,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
-
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.BeanManager;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author: Marius Bogoevici

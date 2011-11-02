@@ -21,6 +21,5 @@ package org.jboss.seam.spring.test.injection;
  * @author: Marius Bogoevici
  */
 public class CdiDependency {
-
-
+   // empty class, exists just for being injected into a Spring bean
 }

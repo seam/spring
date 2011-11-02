@@ -1,19 +1,26 @@
 package org.jboss.seam.spring.bootstrap;
 
-import org.jboss.seam.spring.injection.SpringBean;
-import org.springframework.context.ApplicationContext;
-
-import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.spi.*;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.enterprise.context.spi.CreationalContext;
+import javax.enterprise.inject.spi.Bean;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.InjectionPoint;
+import javax.enterprise.inject.spi.ProcessProducer;
+import javax.enterprise.inject.spi.Producer;
+
+import org.jboss.seam.spring.injection.SpringBean;
+import org.springframework.context.ApplicationContext;
+
 /**
-* @author Marius Bogoevici
-*/
+ * Producer class for Spring bean instances that are injected into CDI injection points.
+ *
+ * @author Marius Bogoevici
+ */
 class SpringBeanProducer implements Producer<Object> {
     private final ProcessProducer<?, Object> processProducer;
     private final BeanManager beanManager;

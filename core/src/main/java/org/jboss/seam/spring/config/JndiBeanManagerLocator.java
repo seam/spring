@@ -17,13 +17,13 @@
 
 package org.jboss.seam.spring.config;
 
+import javax.enterprise.inject.spi.BeanManager;
+import javax.naming.NamingException;
+
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jndi.JndiLocatorSupport;
 import org.springframework.util.Assert;
-
-import javax.enterprise.inject.spi.BeanManager;
-import javax.naming.NamingException;
 
 /**
  * @author: Marius Bogoevici

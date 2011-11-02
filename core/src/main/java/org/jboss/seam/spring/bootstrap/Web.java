@@ -17,7 +17,11 @@
 
 package org.jboss.seam.spring.bootstrap;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * When a producer field has this annotation, the extension will automatically look up the

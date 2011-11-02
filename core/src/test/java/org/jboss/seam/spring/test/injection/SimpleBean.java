@@ -18,7 +18,6 @@
 package org.jboss.seam.spring.test.injection;
 
 import org.jboss.seam.solder.core.Veto;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author: Marius Bogoevici

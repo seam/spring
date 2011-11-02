@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
 /**
  * Describes a set of configuration locations that can be used to bootstrap a Spring
  * {@link org.springframework.context.ApplicationContext}.
- *
+ * <p/>
  * When a producer field has this annotation, the extension will automatically bootstrap
  * an application context which will be injected into all the injection points serviced
  * by this producer.

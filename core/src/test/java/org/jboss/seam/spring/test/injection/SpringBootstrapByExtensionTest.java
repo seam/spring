@@ -17,12 +17,14 @@
 
 package org.jboss.seam.spring.test.injection;
 
+import static org.jboss.seam.spring.test.utils.Dependencies.SEAM_SPRING_EXTENSION_LOCATION;
+import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
+import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.spring.bootstrap.SpringContext;
-import org.jboss.seam.spring.test.bootstrap.ConfigurationContextProducer;
 import org.jboss.seam.spring.utils.Locations;
-import org.jboss.seam.spring.test.utils.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -31,10 +33,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
-
-import static org.jboss.seam.spring.test.utils.Dependencies.SEAM_SPRING_EXTENSION_LOCATION;
-import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
-import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
 
 /**
  * @author: Marius Bogoevici

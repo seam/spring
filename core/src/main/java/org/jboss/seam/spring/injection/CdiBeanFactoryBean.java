@@ -17,11 +17,11 @@
 
 package org.jboss.seam.spring.injection;
 
+import javax.enterprise.inject.spi.BeanManager;
+
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
-
-import javax.enterprise.inject.spi.BeanManager;
 
 /**
  * {@link FactoryBean} for referencing CDI beans from within a Spring {@link org.springframework.context.ApplicationContext}.

@@ -1,11 +1,21 @@
 package org.jboss.seam.spring.test.config;
 
+import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
+import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
+
+import javax.enterprise.inject.spi.BeanManager;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.spring.bootstrap.SpringContext;
-import org.jboss.seam.spring.test.bootstrap.*;
 import org.jboss.seam.spring.test.bootstrap.WebContextProducer;
-import org.jboss.seam.spring.test.injection.*;
+import org.jboss.seam.spring.test.injection.CdiBean;
+import org.jboss.seam.spring.test.injection.CdiDependency;
+import org.jboss.seam.spring.test.injection.CdiQualifier;
+import org.jboss.seam.spring.test.injection.CdiQualifierWithAttributes;
+import org.jboss.seam.spring.test.injection.SecondCdiBean;
+import org.jboss.seam.spring.test.injection.SpringBeanInjectedWithCdiBean;
+import org.jboss.seam.spring.test.injection.ThirdCdiBean;
 import org.jboss.seam.spring.test.utils.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -15,11 +25,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
-
-import javax.enterprise.inject.spi.BeanManager;
-
-import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
-import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
 
 /**
  * @author Marius Bogoevici

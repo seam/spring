@@ -17,14 +17,14 @@
 
 package org.jboss.seam.spring.test.utils;
 
+import java.util.Map;
+
+import javax.enterprise.inject.spi.BeanManager;
+
 import org.jboss.weld.Container;
 import org.jboss.weld.bootstrap.spi.BeanDeploymentArchive;
 import org.jboss.weld.manager.BeanManagerImpl;
 import org.springframework.beans.factory.FactoryBean;
-
-import java.util.Map;
-
-import javax.enterprise.inject.spi.BeanManager;
 
 /**
  * @author: Marius Bogoevici

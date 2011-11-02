@@ -17,6 +17,8 @@
 
 package org.jboss.seam.spring.test.injection;
 
+import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.spring.test.utils.ContextInjected;
@@ -28,8 +30,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
-
-import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
 
 
 /**

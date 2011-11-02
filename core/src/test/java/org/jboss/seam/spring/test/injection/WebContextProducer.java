@@ -17,11 +17,11 @@
 
 package org.jboss.seam.spring.test.injection;
 
+import javax.enterprise.inject.Produces;
+
 import org.jboss.seam.spring.bootstrap.SpringContext;
 import org.jboss.seam.spring.bootstrap.Web;
 import org.springframework.context.ApplicationContext;
-
-import javax.enterprise.inject.Produces;
 
 public class WebContextProducer {
 

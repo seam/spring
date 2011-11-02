@@ -17,6 +17,9 @@
 
 package org.jboss.seam.spring.test.injection;
 
+import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
+import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.spring.bootstrap.SpringContext;
@@ -29,9 +32,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
-
-import static org.jboss.seam.spring.test.utils.Dependencies.springDependencies;
-import static org.jboss.seam.spring.test.utils.Dependencies.corePackages;
 
 /**
  * @author: Marius Bogoevici

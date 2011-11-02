@@ -17,13 +17,9 @@
 
 package org.jboss.seam.spring.test.injection;
 
-import org.jboss.seam.spring.bootstrap.Configuration;
-import org.jboss.seam.spring.bootstrap.SpringContext;
-import org.jboss.seam.spring.injection.SpringBean;
-import org.springframework.context.ApplicationContext;
-
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
+
+import org.jboss.seam.spring.injection.SpringBean;
 
 /**
  * @author: Marius Bogoevici
