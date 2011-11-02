@@ -17,7 +17,7 @@
   -->
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
-<chapter id="spring-installation">
+<chapter id="spring-usage">
   <title>Seam Spring - Usage</title>
 
   <para>For using the Seam Spring module,</para>
