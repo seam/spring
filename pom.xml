@@ -213,6 +213,12 @@
         </profile>
     </profiles>
 
+    <developers>
+        <developer>
+            <name>Marius Bogoevici</name>
+            <email>mariusb@redhat.com</email>
+        </developer>
+    </developers>
     <scm>
         <connection>scm:git:git://github.com/seam/spring.git</connection>
         <developerConnection>scm:git:git@github.com:seam/spring.git</developerConnection>
