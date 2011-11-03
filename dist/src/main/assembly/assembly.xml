@@ -47,7 +47,7 @@
          <outputDirectory>artifacts</outputDirectory>
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
-            <include>org.jboss.seam.spring:seam-spring</include>
+            <include>org.jboss.seam.spring:seam-spring-core</include>
          </includes>
          <excludes>
             <exclude>org.jboss.seam.spring:*:*:javadoc</exclude>
