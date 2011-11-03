@@ -1,4 +1,4 @@
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.extension;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -10,6 +10,7 @@ import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.InjectionPoint;
 
+import org.jboss.seam.spring.context.SpringContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

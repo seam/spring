@@ -19,14 +19,13 @@ package org.jboss.seam.spring.test.bootstrap;
 
 import javax.enterprise.inject.Produces;
 
-import org.jboss.seam.spring.bootstrap.Configuration;
-import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.context.Configuration;
+import org.jboss.seam.spring.context.SpringContext;
 import org.springframework.context.ApplicationContext;
 
 public class ConfigurationContextProducer {
 
    @Produces
-   //@ApplicationScoped
    @SpringContext
    @Configuration(locations = "classpath*:org/jboss/seam/spring/test/bootstrap/applicationContext.xml")
    ApplicationContext context;

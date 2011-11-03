@@ -1,4 +1,4 @@
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.extension;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
@@ -13,7 +13,7 @@ import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.inject.spi.ProcessProducer;
 import javax.enterprise.inject.spi.Producer;
 
-import org.jboss.seam.spring.injection.SpringBean;
+import org.jboss.seam.spring.inject.SpringBean;
 import org.springframework.context.ApplicationContext;
 
 /**

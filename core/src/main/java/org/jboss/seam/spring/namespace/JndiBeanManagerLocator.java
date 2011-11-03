@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.config;
+package org.jboss.seam.spring.namespace;
 
 import javax.enterprise.inject.spi.BeanManager;
 import javax.naming.NamingException;

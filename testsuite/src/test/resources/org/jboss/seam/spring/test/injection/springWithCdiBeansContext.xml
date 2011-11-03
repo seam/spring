@@ -25,16 +25,16 @@
         <property name="cdiBean" ref="cdiBean"/>
 
         <property name="secondCdiBean">
-            <bean class="org.jboss.seam.spring.injection.CdiBeanFactoryBean">
+            <bean class="org.jboss.seam.spring.factorybean.CdiBeanFactoryBean">
                 <property name="beanManager">
                     <bean class="org.jboss.seam.spring.test.utils.WeldEmbeddedBeanManagerFactoryBean"/>
                 </property>
                 <property name="cdiBeanLookup">
-                    <bean class="org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup">
+                    <bean class="org.jboss.seam.spring.factorybean.TypeSafeCdiBeanLookup">
                         <constructor-arg value="org.jboss.seam.spring.test.injection.SecondCdiBean"/>
                         <property name="qualifiers">
                             <list>
-                                <bean class="org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup$Qualifier">
+                                <bean class="org.jboss.seam.spring.factorybean.TypeSafeCdiBeanLookup$Qualifier">
                                     <property name="className" value="org.jboss.seam.spring.test.injection.CdiQualifier"/>
                                 </bean>
                             </list>
@@ -45,12 +45,12 @@
         </property>
     </bean>
 
-    <bean id="cdiBean" class="org.jboss.seam.spring.injection.CdiBeanFactoryBean">
+    <bean id="cdiBean" class="org.jboss.seam.spring.factorybean.CdiBeanFactoryBean">
         <property name="beanManager">
             <bean class="org.jboss.seam.spring.test.utils.WeldEmbeddedBeanManagerFactoryBean"/>
         </property>
         <property name="cdiBeanLookup">
-            <bean class="org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup">
+            <bean class="org.jboss.seam.spring.factorybean.TypeSafeCdiBeanLookup">
                <constructor-arg value="org.jboss.seam.spring.test.injection.CdiBean"/>
                <!--<property name="qualifiers">-->
                    <!--<list>-->

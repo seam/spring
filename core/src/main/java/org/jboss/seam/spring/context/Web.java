@@ -15,21 +15,25 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.context;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Annotation that can be added to a producer field to indicate that the bean produced by that field
- * is in fact a bean instance acquired from a corresponding Spring {@link org.springframework.context.ApplicationContext}.
+ * When a producer field has this annotation, the extension will automatically look up the
+ * root web application context which will be injected into all the injection points serviced
+ * by this producer.
  *
- *
- * This is not a qualifier.
+ * This annotation has effect only when used on producer fields.
  *
  * @author: Marius Bogoevici
  */
+@Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SpringBean {
-    String fromContext() default "default";
+@Target(ElementType.FIELD)
+public @interface Web {
 }

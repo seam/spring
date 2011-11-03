@@ -19,7 +19,7 @@ package org.jboss.seam.spring.test.injection;
 
 import javax.enterprise.inject.Produces;
 
-import org.jboss.seam.spring.injection.SpringBean;
+import org.jboss.seam.spring.inject.SpringBean;
 
 /**
  * @author: Marius Bogoevici

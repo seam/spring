@@ -23,7 +23,7 @@ import javax.enterprise.inject.spi.BeanManager;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.context.SpringContext;
 import org.jboss.seam.spring.test.bootstrap.WebContextProducer;
 import org.jboss.seam.spring.test.utils.ContextInjected;
 import org.jboss.shrinkwrap.api.Archive;

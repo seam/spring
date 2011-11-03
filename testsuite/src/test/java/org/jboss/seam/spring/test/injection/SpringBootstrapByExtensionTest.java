@@ -21,7 +21,7 @@ import static org.jboss.seam.spring.test.utils.Dependencies.dependencies;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.context.SpringContext;
 import org.jboss.seam.spring.utils.Locations;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;

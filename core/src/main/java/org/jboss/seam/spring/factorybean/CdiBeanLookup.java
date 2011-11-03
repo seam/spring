@@ -15,27 +15,26 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.factorybean;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import javax.enterprise.inject.spi.BeanManager;
 
 /**
- * Describes a set of configuration locations that can be used to bootstrap a Spring
- * {@link org.springframework.context.ApplicationContext}.
- * <p/>
- * When a producer field has this annotation, the extension will automatically bootstrap
- * an application context which will be injected into all the injection points serviced
- * by this producer.
+ * A strategy for looking up a CDI bean instance in a {@link javax.enterprise.inject.spi.BeanManager}
  *
  * @author: Marius Bogoevici
  */
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface Configuration {
-    String[] locations() default "context";
+public interface CdiBeanLookup<T> {
+
+    /**
+     * Look up a bean instance in the given {@link BeanManager}
+     * @param beanManager
+     * @return
+     */
+   T lookupBean(BeanManager beanManager);
+
+    /**
+     * @return the expected type of this lookup, if any (can be <code>null</code>, meaning that the type is not known)
+     */
+    Class<?> getExpectedType();
 }

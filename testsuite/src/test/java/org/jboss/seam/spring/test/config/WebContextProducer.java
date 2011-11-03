@@ -20,8 +20,8 @@ package org.jboss.seam.spring.test.config;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
-import org.jboss.seam.spring.bootstrap.SpringContext;
-import org.jboss.seam.spring.bootstrap.Web;
+import org.jboss.seam.spring.context.SpringContext;
+import org.jboss.seam.spring.context.Web;
 import org.springframework.context.ApplicationContext;
 
 public class WebContextProducer {

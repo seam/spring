@@ -1,1 +1,1 @@
-org.jboss.seam.spring.bootstrap.SpringContextBootstrapExtension
+org.jboss.seam.spring.extension.SpringContextBootstrapExtension

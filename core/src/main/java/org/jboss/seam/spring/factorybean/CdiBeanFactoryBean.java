@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.factorybean;
 
 import javax.enterprise.inject.spi.BeanManager;
 

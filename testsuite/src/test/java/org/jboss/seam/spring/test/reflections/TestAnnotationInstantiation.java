@@ -20,7 +20,7 @@ package org.jboss.seam.spring.test.reflections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.context.SpringContext;
 import org.jboss.seam.spring.utils.Annotations;
 import org.junit.Assert;
 import org.junit.Test;

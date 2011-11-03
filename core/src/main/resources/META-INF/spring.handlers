@@ -1,1 +1,1 @@
-http\://www.jboss.org/schema/seam/spring=org.jboss.seam.spring.config.SeamSpringNamespaceHandler
+http\://www.jboss.org/schema/seam/spring=org.jboss.seam.spring.namespace.SeamSpringNamespaceHandler

@@ -15,28 +15,23 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.namespace;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import javax.inject.Qualifier;
+import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
- * Qualifier for Spring {@link org.springframework.context.ApplicationContext} instances
- * managed by the CDI extension.
+ * A {@link org.springframework.beans.factory.xml.NamespaceHandler} for Spring/CDI integration.
  *
  * @author: Marius Bogoevici
  */
-@Qualifier
-@Inherited
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
-public @interface SpringContext {
-    String name() default "default";
+public class SeamSpringNamespaceHandler extends NamespaceHandlerSupport{
+
+    public static final String BEAN_MANAGER_ELEMENT_NAME = "bean-manager";
+    private static final String BEAN_REFERENCE = "bean-reference";
+
+    @Override
+    public void init() {
+        registerBeanDefinitionParser(BEAN_MANAGER_ELEMENT_NAME, new BeanManagerBeanDefinitionParser());
+        registerBeanDefinitionParser(BEAN_REFERENCE, new CdiBeanImportBeanDefinitionParser());
+    }
 }

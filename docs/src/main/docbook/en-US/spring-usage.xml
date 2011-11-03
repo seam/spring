@@ -65,7 +65,7 @@ public @interface SpringContext {
 
       <para><table>
           <title>Attributes of
-          @org.jboss.seam.spring.bootstrap.SpringContext</title>
+              @org.jboss.seam.spring.context.SpringContext</title>
 
           <tgroup cols="3">
             <thead>
@@ -126,23 +126,23 @@ public @interface SpringContext {
         <para><informalexample>
             <programlisting>package org.jboss.seam.spring.test.bootstrap;
 
-import org.jboss.seam.spring.bootstrap.SpringContext;
-import org.jboss.seam.spring.bootstrap.Web;
-import org.springframework.context.ApplicationContext;
+                import org.jboss.seam.spring.context.SpringContext;
+                import org.jboss.seam.spring.bocontexteb;
+                import org.springframework.context.ApplicationContext;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
+                import javax.enterprise.context.ApplicationScoped;
+                import javax.enterprise.inject.Produces;
 
-public class WebContextProducer {
+                public class WebContextProducer {
 
-   @Produces
-   @SpringContext
-   @Web
-   ApplicationContext context;
+                @Produces
+                @SpringContext
+                @Web
+                ApplicationContext context;
 
-}
+                }
 
-</programlisting>
+            </programlisting>
           </informalexample></para>
 
         <note>
@@ -151,7 +151,7 @@ public class WebContextProducer {
           ContextLoaderListener.</para>
         </note>
 
-        <para>The <code>@org.jboss.seam.spring.bootstrap.Web</code> annotation
+        <para>The <code>@org.jboss.seam.spring.context.Web</code> annotation
         must be placed only on the producer field for the
         <code>ApplicationContext</code>, and it will register a producer that
         looks up the parent web <code>ApplicationContext</code>. </para>
@@ -167,23 +167,23 @@ public class WebContextProducer {
         <para><informalexample>
             <programlisting>package org.jboss.seam.spring.test.bootstrap;
 
-import org.jboss.seam.spring.bootstrap.Configuration;
-import org.jboss.seam.spring.bootstrap.SpringContext;
-import org.springframework.context.ApplicationContext;
+                import org.jboss.seam.spring.context.Configuration;
+                import org.jboss.seam.spring.bocontextpringContext;
+                import org.springframework.context.ApplicationContext;
 
-import javax.enterprise.inject.Produces;
+                import javax.enterprise.inject.Produces;
 
-public class ConfigurationContextProducer {
+                public class ConfigurationContextProducer {
 
-   @Produces
-   @SpringContext
-   @Configuration(locations = "classpath*:org/jboss/seam/spring/test/bootstrap/applicationContext.xml")
-   ApplicationContext context;
+                @Produces
+                @SpringContext
+                @Configuration(locations = "classpath*:org/jboss/seam/spring/test/bootstrap/applicationContext.xml")
+                ApplicationContext context;
 
-}
-</programlisting>
+                }
+            </programlisting>
           </informalexample>The
-        <code>@org.jboss.seam.spring.bootstrap.Configuration</code> annotation
+        <code>@org.jboss.seam.spring.context.Configuration</code> annotation
         must be placed only on the producer field of the
         <code>ApplicationContext</code>, and it will register a producer that
         creates an <code>ApplicationContext</code> from the files in the
@@ -193,7 +193,7 @@ public class ConfigurationContextProducer {
         @org.jboss.seam.spring.bootstrap.Configuration are listed in the
         following table:<table>
             <title>Attributes of the
-            @org.jboss.seam.spring.bootstrap.Configuration</title>
+                @org.jboss.seam.spring.context.Configuration</title>
 
             <tgroup cols="3">
               <thead>

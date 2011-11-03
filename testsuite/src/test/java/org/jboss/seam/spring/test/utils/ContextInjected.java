@@ -19,7 +19,7 @@ package org.jboss.seam.spring.test.utils;
 
 import javax.inject.Inject;
 
-import org.jboss.seam.spring.bootstrap.SpringContext;
+import org.jboss.seam.spring.context.SpringContext;
 import org.springframework.context.ApplicationContext;
 
 /**

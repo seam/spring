@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.extension;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -32,7 +32,8 @@ import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.ProcessAnnotatedType;
 import javax.enterprise.inject.spi.ProcessProducer;
 
-import org.jboss.seam.spring.injection.SpringBean;
+import org.jboss.seam.spring.context.SpringContext;
+import org.jboss.seam.spring.inject.SpringBean;
 import org.jboss.seam.spring.utils.Locations;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.config;
+package org.jboss.seam.spring.namespace;
 
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -33,7 +33,7 @@ import org.w3c.dom.Element;
  */
 public class BeanManagerBeanDefinitionParser extends AbstractBeanDefinitionParser {
     
-    private static final String JNDI_BEAN_MANAGER_LOCATOR_CLASS = "org.jboss.seam.spring.config.JndiBeanManagerLocator";
+    private static final String JNDI_BEAN_MANAGER_LOCATOR_CLASS = "org.jboss.seam.spring.namespace.JndiBeanManagerLocator";
 
     public static final String DEFAULT_BEAN_MANAGER_ID = "cdiBeanManager";
 

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.config;
+package org.jboss.seam.spring.namespace;
 
-import static org.jboss.seam.spring.config.BeanManagerBeanDefinitionParser.DEFAULT_BEAN_MANAGER_ID;
-import static org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup.Qualifier;
+import static org.jboss.seam.spring.namespace.BeanManagerBeanDefinitionParser.DEFAULT_BEAN_MANAGER_ID;
+import static org.jboss.seam.spring.factorybean.TypeSafeCdiBeanLookup.Qualifier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,10 +41,10 @@ import org.w3c.dom.NodeList;
  */
 public class CdiBeanImportBeanDefinitionParser extends AbstractBeanDefinitionParser {
 
-    public static final String FACTORY_BEAN_CLASS_NAME = "org.jboss.seam.spring.injection.CdiBeanFactoryBean";
+    public static final String FACTORY_BEAN_CLASS_NAME = "org.jboss.seam.spring.factorybean.CdiBeanFactoryBean";
 
     public static final String BEAN_MANAGER_REFERENCE = "bean-manager";
-    public static final String TYPE_SAFE_BEAN_LOOKUP_CLASS_NAME = "org.jboss.seam.spring.injection.TypeSafeCdiBeanLookup";
+    public static final String TYPE_SAFE_BEAN_LOOKUP_CLASS_NAME = "org.jboss.seam.spring.factorybean.TypeSafeCdiBeanLookup";
 
     @Override
     public AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {

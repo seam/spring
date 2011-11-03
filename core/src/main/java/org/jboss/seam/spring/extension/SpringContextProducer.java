@@ -1,4 +1,4 @@
-package org.jboss.seam.spring.bootstrap;
+package org.jboss.seam.spring.extension;
 
 import java.util.Set;
 
@@ -7,6 +7,8 @@ import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.inject.spi.ProcessProducer;
 import javax.enterprise.inject.spi.Producer;
 
+import org.jboss.seam.spring.context.Configuration;
+import org.jboss.seam.spring.context.Web;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.ContextLoader;

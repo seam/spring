@@ -15,37 +15,26 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.extension;
 
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.util.AnnotationLiteral;
 
-import org.springframework.beans.factory.BeanCreationException;
+import org.jboss.seam.spring.context.SpringContext;
 
 /**
+ * An {@link AnnotationLiteral} for the {@link org.jboss.seam.spring.context.SpringContext} annotation.
+ *
  * @author: Marius Bogoevici
  */
-public class NamedCdiBeanLookup implements CdiBeanLookup<Object> {
-
+public class SpringContextLiteral extends AnnotationLiteral<SpringContext> implements SpringContext {
     private String name;
 
-    public void setName(String name) {
+    public SpringContextLiteral(String name) {
         this.name = name;
     }
 
     @Override
-    public Object lookupBean(BeanManager beanManager) {
-        Bean<Object> resolvedBean = (Bean<Object>) beanManager.resolve(beanManager.getBeans(name));
-        if (resolvedBean != null) {
-            return resolvedBean.create(beanManager.createCreationalContext(resolvedBean));
-        }
-        else {
-            throw new BeanCreationException("No bean named " + name + " can be found");
-        }
-    }
-
-    @Override
-    public Class<?> getExpectedType() {
-        return null;
+    public String name() {
+        return this.name;
     }
 }

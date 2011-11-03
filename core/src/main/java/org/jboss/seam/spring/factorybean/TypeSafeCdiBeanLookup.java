@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.jboss.seam.spring.injection;
+package org.jboss.seam.spring.factorybean;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Proxy;
