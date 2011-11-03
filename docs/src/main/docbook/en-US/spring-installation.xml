@@ -16,30 +16,30 @@
   limitations under the License.
   -->
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <chapter id="spring-installation">
-   <title>Seam Spring - Installation</title>
+  <title>Seam Spring - Installation</title>
 
-   <section id="spring-maven-dependencies">
-      <title>Maven dependency configuration</title>
-      <para>
-	   	If you are using <ulink url="http://maven.apache.org/">Maven</ulink> as your build tool, you can add the
-	   	following single dependency to your pom.xml file to include Seam Spring:
-	   </para>
-	   <programlisting role="XML"><![CDATA[<dependency>
-   <groupId>org.jboss.seam.spring</groupId>
-   <artifactId>seam-spring</artifactId>
-   <version>${seam.spring.version}</version>
-</dependency>]]></programlisting>
-	   <tip>
-	   	<para>
-            Substitute the expression ${seam.spring.version} with the most recent or appropriate version of Seam Spring.
-         </para>
-	   </tip>
+  <section id="spring-maven-dependencies">
+    <title>Maven dependency configuration</title>
 
-   </section>
+    <para>If you are using <ulink url="http://maven.apache.org/">Maven</ulink>
+    as your build tool, you can add the following single dependency to your
+    pom.xml file to include the Seam Spring module.</para>
 
-<!--
+    <programlisting role="XML">&lt;dependency&gt;
+   &lt;groupId&gt;org.jboss.seam.spring&lt;/groupId&gt;
+   &lt;artifactId&gt;seam-spring-core&lt;/artifactId&gt;
+   &lt;version&gt;${seam.spring.version}&lt;/version&gt;
+&lt;/dependency&gt;</programlisting>
+
+    <tip>
+      <para>Substitute the expression ${seam.spring.version} with the most
+      recent or appropriate version of Seam Spring.</para>
+    </tip>
+  </section>
+
+  <!--
 vim:et:ts=3:sw=3:tw=120
 -->
 </chapter>
