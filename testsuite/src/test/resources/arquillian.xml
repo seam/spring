@@ -1,6 +1,9 @@
 <arquillian xmlns="http://jboss.com/arquillian" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
+    <container qualifier="weld-ee-embedded-1.1">
+    </container>
+
     <container qualifier="jbossas-managed-7">
         <protocol type="jmx-as7">
             <property name="executionType">REMOTE</property>
