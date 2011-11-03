@@ -39,7 +39,7 @@
         </listitem>
 
         <listitem>
-          <para>accessing Spring beans accessible via CDI (i.e. as managed beans)
+          <para>making Spring beans accessible via CDI (i.e. as managed beans)
           - for injection and lookup;</para>
         </listitem>
 
