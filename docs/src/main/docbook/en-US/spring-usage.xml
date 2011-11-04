@@ -193,7 +193,6 @@ public class WebContextProducer {
           <para>The Seam Spring extension can create a Spring application
           ad-hoc and install it as a Spring context as follows:</para>
 
-          <para><informalexample>
               <programlisting language="java" role="JAVA">package org.jboss.seam.spring.test.bootstrap;
 
 import javax.enterprise.inject.Produces;
@@ -210,8 +209,7 @@ public class ConfigurationContextProducer {
    ApplicationContext context;
 }
             </programlisting>
-            </informalexample>The
-          <code>@org.jboss.seam.spring.context.Configuration</code> annotation
+<para>The <code>@org.jboss.seam.spring.context.Configuration</code> annotation
           must be placed only on the producer field of the
           <code>ApplicationContext</code>, and it will register a producer
           that creates an <code>ApplicationContext</code> from the files in
