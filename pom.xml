@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.jboss.seam</groupId>
         <artifactId>seam-parent</artifactId>
-        <version>18</version>
+        <version>19</version>
     </parent>
 
     <groupId>org.jboss.seam.spring</groupId>
@@ -32,8 +32,8 @@
     <url>http://www.seamframework.org/Seam3/SpringModuleHome</url>
 
     <properties>
-        <seam.version>3.1.0.CR1</seam.version>
-        <spring.version>3.0.5.RELEASE</spring.version>
+        <seam.version>3.1.0.Final</seam.version>
+        <spring.version>3.0.6.RELEASE</spring.version>
         <jboss.spec.version>1.0.0.CR1</jboss.spec.version>
         <maven.version>3.0.1</maven.version>
         <aether.version>1.8</aether.version>
